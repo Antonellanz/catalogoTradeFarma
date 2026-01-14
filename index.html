@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo Trade Farma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: white;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      max-width: 180px;
+      width: 80%;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 25px 0 15px;
+      font-size: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 15px;
+      max-width: 900px;
+      margin: auto;
+      padding: 0 15px;
+    }
+
+    .cat {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .cat:hover {
+      background: #0b2a6f;
+      color: white;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: white;
+      font-size: 14px;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+    }
+
+    footer a {
+      color: #0b2a6f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 20px;
+      }
+      .cat {
+        font-size: 14px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="Trade Farma">
+</header>
+
+<h1>Catálogo de Productos</h1>
+
+<div class="grid">
+  <a class="cat" href="categorias/comprimidos.html">Comprimidos</a>
+  <a class="cat" href="categorias/descartable.html">Descartable</a>
+  <a class="cat" href="categorias/orales.html">Orales</a>
+  <a class="cat" href="categorias/ampollas.html">Ampollas</a>
+</div>
+
+<footer>
+  Si estás interesado en comprar nuestros productos,<br>
+  creá tu usuario en nuestra página web:<br>
+  👉 <a href="https://www.tradefarma.com.ar/" target="_blank">www.tradefarma.com.ar</a>
+</footer>
+
+</body>
+</html>
+
