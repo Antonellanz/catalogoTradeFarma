@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ofertas</title>
+  <meta charset="UTF-8">
+  <title>Ofertas Semanales | Trade Farma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: white;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      max-width: 180px;
+      width: 80%;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .btn-pdf {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 14px 22px;
+      background-color: #0b2a6f;
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .btn-pdf:hover {
+      opacity: 0.9;
+    }
+
+    iframe {
+      width: 100%;
+      height: 650px;
+      border: none;
+      border-radius: 8px;
+      background: white;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 25px 15px;
+      text-align: center;
+      background: white;
+      font-size: 14px;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+    }
+
+    footer a {
+      color: #0b2a6f;
+      font-weight: 600;
+      text-decoration: none;
+    }
+       .back {
+  display: inline-block;
+  margin: 12px;
+  padding: 8px 14px;
+  background: #0b2a6f;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.back:hover {
+  background: #143c9c;}
+
+    /* Mobile optimization */
+    @media (max-width: 600px) {
+      iframe {
+        display: none; /* ocultamos preview en mobile */
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
+<a href="/index.html" class="back">← Volver al catálogo</a>
+
 <body>
-    <h1>OFERTAS</h1>
+
+<header>
+  <img src="/logo.png" alt="Trade Farma">
+</header>
+
+<div class="container">
+  <h1>Ofertas Semanales</h1>
+
+  <p>
+    Accedé a nuestras ofertas vigentes.  
+    Podés visualizar o descargar el catálogo en formato PDF.
+  </p>
+
+  <!-- BOTÓN PRINCIPAL -->
+  <a class="btn-pdf"
+     href="https://drive.google.com/file/d/1qYhN2CSpj7DdmNbz9Qd2XnO4rZkffFyL/view"
+     target="_blank">
+    📄 Ver ofertas de la semana
+  </a>
+
+  <!-- PREVIEW (desktop) -->
+  <iframe
+    src="https://drive.google.com/file/d/1qYhN2CSpj7DdmNbz9Qd2XnO4rZkffFyL/preview">
+  </iframe>
+</div>
+
+<footer>
+  <p>
+    Para realizar compras, es necesario contar con un usuario registrado.
+  </p>
+
+  🌐 <a href="https://www.tradefarma.com.ar" target="_blank">
+    www.tradefarma.com.ar
+  </a>
+  <br><br>
+
+  <a href="https://wa.me/message/FPLDMOQYWKAYB1" target="_blank"
+     style="
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 10px 16px;
+       background-color: #25D366;
+       color: #ffffff;
+       border-radius: 6px;
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 14px;
+     ">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
+         style="width:18px;">
+    Contacto por WhatsApp
+  </a>
+</footer>
+
 </body>
 </html>
