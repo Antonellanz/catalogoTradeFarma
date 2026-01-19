@@ -2,86 +2,98 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ofertas Semanales | Trade Farma</title>
+  <title>Ofertas – Trade Farma</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7fa;
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: white;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    header img {
-      max-width: 180px;
-      width: 80%;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
+      background: #f5f7fa;
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 14px;
-      color: #374151;
-      line-height: 1.5;
-    }
-
-    .btn-pdf {
-      display: inline-block;
+      text-align: center;
       margin: 20px 0;
+    }
+
+    /* ===== CAROUSEL ===== */
+    .carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      min-width: 260px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      scroll-snap-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ff6a00;
+      color: white;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-content {
+      padding: 14px;
+      text-align: center;
+    }
+
+    .card-content h3 {
+      font-size: 15px;
+      margin: 8px 0;
+    }
+
+    .price {
+      color: #ff6a00;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* ===== PDF BUTTON ===== */
+    .pdf-box {
+      text-align: center;
+      margin: 30px 20px;
+    }
+
+    .pdf-btn {
+      display: inline-block;
+      background: #0b2a6f;
+      color: white;
       padding: 14px 22px;
-      background-color: #0b2a6f;
-      color: #ffffff;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 15px;
     }
 
-    .btn-pdf:hover {
-      opacity: 0.9;
+    .pdf-btn:hover {
+      background: #081f52;
     }
-
-    iframe {
-      width: 100%;
-      height: 650px;
-      border: none;
-      border-radius: 8px;
-      background: white;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 25px 15px;
-      text-align: center;
-      background: white;
-      font-size: 14px;
-      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
-    }
-
-    footer a {
-      color: #0b2a6f;
-      font-weight: 600;
-      text-decoration: none;
-    }
-       .back {
+          .back {
   display: inline-block;
   margin: 12px;
   padding: 8px 14px;
@@ -93,78 +105,50 @@
   font-weight: bold;
 }
 .back:hover {
-  background: #143c9c;}
-
-    /* Mobile optimization */
-    @media (max-width: 600px) {
-      iframe {
-        display: none; /* ocultamos preview en mobile */
-      }
-
-      h1 {
-        font-size: 20px;
-      }
-    }
+  background: #143c9c;
+}
   </style>
 </head>
 <a href="/index.html" class="back">← Volver al catálogo</a>
-
 <body>
 
-<header>
-  <img src="/logo.png" alt="Trade Farma">
-</header>
+<h1>🔥 Ofertas Destacadas</h1>
 
-<div class="container">
-  <h1>Ofertas Semanales</h1>
+<div class="carousel">
 
-  <p>
-    Accedé a nuestras ofertas vigentes.  
-    Podés visualizar o descargar el catálogo en formato PDF.
-  </p>
+  <div class="card">
+    <span class="badge">SUPER PROMO</span>
+    <img src="img_ofertas/sildenafil.jpeg" alt="Sildenafil 100mg">
+    <div class="card-content">
+      <h3>Sildenafil 100 mg x 30<br>Viripotens 100</h3>
+    </div>
+  </div>
 
-  <!-- BOTÓN PRINCIPAL -->
-  <a class="btn-pdf"
-     href="https://drive.google.com/file/d/1qYhN2CSpj7DdmNbz9Qd2XnO4rZkffFyL/view"
-     target="_blank">
-    📄 Ver ofertas de la semana
-  </a>
+  <div class="card">
+    <span class="badge">OFERTA</span>
+    <img src="img_ofertas/rhinal.jpeg" alt="Rhinal Nafazolina">
+    <div class="card-content">
+      <h3>Nafazolina Clorhidrato<br>Rhinal 30 ml</h3>
+    </div>
+  </div>
 
-  <!-- PREVIEW (desktop) -->
-  <iframe
-    src="https://drive.google.com/file/d/1qYhN2CSpj7DdmNbz9Qd2XnO4rZkffFyL/preview">
-  </iframe>
+  <div class="card">
+    <span class="badge">OFERTA</span>
+    <img src="img_ofertas/repelente.jpeg" alt="Repelente 911">
+    <div class="card-content">
+      <h3>Repelente Aerosol 911<br>165 ml</h3>
+      <div class="price">$1.815</div>
+    </div>
+  </div>
+
 </div>
 
-<footer>
-  <p>
-    Para realizar compras, es necesario contar con un usuario registrado.
-  </p>
-
-  🌐 <a href="https://www.tradefarma.com.ar" target="_blank">
-    www.tradefarma.com.ar
+<div class="pdf-box">
+  <a class="pdf-btn" href="ofertas.pdf" target="_blank">
+    📄 Descargar ofertas completas (PDF)
   </a>
-  <br><br>
-
-  <a href="https://wa.me/message/FPLDMOQYWKAYB1" target="_blank"
-     style="
-       display: inline-flex;
-       align-items: center;
-       gap: 8px;
-       padding: 10px 16px;
-       background-color: #25D366;
-       color: #ffffff;
-       border-radius: 6px;
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 14px;
-     ">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="WhatsApp"
-         style="width:18px;">
-    Contacto por WhatsApp
-  </a>
-</footer>
+</div>
 
 </body>
 </html>
+
