@@ -36,6 +36,13 @@
     }
   </style>
 </head>
+<script>
+  function printSheet() {
+    const iframe = document.querySelector("iframe");
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
+  }
+</script>
 <body>
 <a href="./categorias/medicamentos.html" class="back">← Volver al catálogo</a>
 <h1>Ampollas</h1>
@@ -43,6 +50,24 @@
 <iframe 
 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=2114233445&single=true&widget=true&headers=false">
 </iframe>
+</div>
+<div style="text-align:center; margin: 10px;">
+  <a 
+    href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=2114233445&single=true&widget=true&headers=false&print=true"
+    target="_blank"
+    style="
+      display: inline-block;
+      padding: 10px 16px;
+      background: #1976d2;
+      color: white;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+    "
+  >
+    🖨️ Imprimir catálogo
+  </a>
 </div>
 <div style="
   max-width: 420px;
