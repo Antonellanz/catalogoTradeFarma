@@ -1,89 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: white;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    header img {
-      max-width: 180px;
-      width: 80%;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 25px 0 15px;
-      font-size: 24px;
-    }
-
-     .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
-  gap: 15px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 30px;
-  justify-content: center;
-}
-
-
-    .cat {
-      background: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: #333;
-      font-size: 16px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .cat:hover {
-      background: #0b2a6f;
-      color: white;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      text-align: center;
-      background: white;
-      font-size: 14px;
-      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
-    }
-
-    footer a {
-      color: #0b2a6f;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 20px;
-      }
-      .cat {
-        font-size: 14px;
-        padding: 15px;
-      }
-    }
-          .back {
+  <meta charset="UTF-8">
+  <title>Medicamentos - Catálogo Trade Farma</title>
+  <style>
+    body { margin:0; font-family: Arial; background:#f5f5f5; }
+    h1 { background:#1976d2; color:white; padding:15px; text-align:center; }
+    iframe { width:100%; height:90vh; border:none; }
+    .back {
   display: inline-block;
   margin: 12px;
   padding: 8px 14px;
@@ -97,26 +21,110 @@
 .back:hover {
   background: #143c9c;
 }
+.contenedor {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    iframe {
+      width: 95%;
+      max-width: 1200px;
+      height: 85vh;
+      border: none;
+      background: white;
+    }
+
+
   </style>
+  
 </head>
+<script>
+  function printSheet() {
+    const iframe = document.querySelector("iframe");
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
+  }
+</script>
 
 <body>
-    <a href="../index.html" class="back">← Volver al catálogo</a>
+<a href="/index.html" class="back">← Volver al catálogo</a>
+<h1>Comprimidos, ampollas y orales</h1>
 
-<header>
-  <img src="/logo.png" alt="Trade Farma">
-</header>
-
-<h1>Catálogo de Medicamentos</h1>
-
-<div class="grid">
-  <a class="cat" href="../comprimidos.html">Comprimidos</a>
-  
-  <a class="cat" href="../orales.html">Orales</a>
-  <a class="cat" href="../ampollas.html">Ampollas</a>
+<div class="contenedor">
+<iframe 
+src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=0&single=true&widget=true&headers=false">
+</iframe>
 </div>
-</head>
+<div style="text-align:center; margin: 10px;">
+  <a 
+    href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=0&single=true&widget=true&headers=false&print=true"
+    target="_blank"
+    style="
+      display: inline-block;
+      padding: 10px 16px;
+      background: #1976d2;
+      color: white;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+    "
+  >
+    🖨️ Imprimir catálogo
+  </a>
+</div>
 
-    
+
+
+
+<div style="
+  max-width: 420px;
+  padding: 16px 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fafafa;
+">
+
+  <strong style="font-size: 16px; color:#1f2937;">
+    Trade Farma – Droguería
+  </strong><br>
+
+  <span style="font-size: 13px; color:#4b5563;">
+    🌐 <a href="https://www.tradefarma.com.ar" target="_blank" style="color:#2563eb; text-decoration:none;">
+      www.tradefarma.com.ar
+    </a>
+  </span>
+
+  <p style="font-size: 14px; color:#374151; margin-top: 12px; line-height: 1.5;">
+    En caso de requerir algún producto que no se encuentre incluido en el presente catálogo,
+    lo invitamos a consultarnos. Con gusto podremos enviarle la correspondiente cotización.
+  </p>
+
+  <a href="https://wa.me/message/FPLDMOQYWKAYB1" target="_blank"
+     style="
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 10px 14px;
+       background-color: #25D366;
+       color: #ffffff;
+       border-radius: 6px;
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 14px;
+     ">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+         alt="WhatsApp"
+         style="width:18px;">
+    Contacto por WhatsApp
+  </a>
+
+</div>
+
+
+
+
 </body>
 </html>
