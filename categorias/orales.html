@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Trade Farma</title>
+  <link rel="icon" type="image/x-icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       VARIABLES Y RESET
+    ============================================================ */
+    :root {
+      --azul:        #0b2a6f;
+      --azul-light:  #e6f1fb;
+      --azul-mid:    #378add;
+      --verde-bg:    #eaf3de;
+      --verde-txt:   #27500a;
+      --naranja-bg:  #faeeda;
+      --naranja-txt: #633806;
+      --rojo-bg:     #fcebeb;
+      --rojo-txt:    #791f1f;
+      --bg-page:     #f0f4fa;
+      --bg-card:     #ffffff;
+      --border:      rgba(0,0,0,0.09);
+      --text-primary:#1a1a2e;
+      --text-muted:  #6b7280;
+      --font:        'DM Sans', sans-serif;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      background: var(--azul);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(11,42,111,0.25);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .header-logo img {
+      height: 36px;
+      filter: brightness(0) invert(1);
+    }
+
+    .header-logo-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .header-logo-text span { color: #ec8e41; }
+
+    .header-badge {
+      font-size: 12px;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.85);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      letter-spacing: 0.2px;
+    }
+       .back {
+  display: inline-block;
+  margin: 12px;
+  padding: 8px 14px;
+  background: #ebedf1;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+    
+    .back:hover {
+  background: #e7eaf3;
+    }
+
+    /* ============================================================
+       HERO / TÍTULO
+    ============================================================ */
+    .hero {
+      background: var(--azul);
+      padding: 32px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 32px;
+      background: var(--bg-page);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ============================================================
+       CONTENEDOR PRINCIPAL
+    ============================================================ */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ============================================================
+       PANEL DE FILTROS
+    ============================================================ */
+    .filtros-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-top: -20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filtros-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .input-buscar {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      font-family: var(--font);
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: #f8fafc;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+
+    .input-buscar:focus {
+      border-color: var(--azul-mid);
+      box-shadow: 0 0 0 3px rgba(55,138,221,0.15);
+      background: #fff;
+    }
+
+    .buscar-wrap {
+      position: relative;
+      grid-column: 1 / -1;
+    }
+
+    .buscar-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: var(--font);
+      font-size: 13px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: #f8fafc;
+      color: var(--text-primary);
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+      transition: border-color 0.15s;
+    }
+
+    select:focus { border-color: var(--azul-mid); outline: none; }
+
+    .filtros-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+
+    .stock-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .stock-toggle input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--azul);
+      cursor: pointer;
+    }
+
+    .btn-limpiar {
+      font-family: var(--font);
+      font-size: 12px;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-limpiar:hover {
+      border-color: var(--azul-mid);
+      color: var(--azul);
+      background: var(--azul-light);
+    }
+
+    /* ============================================================
+       BARRA DE RESULTADOS
+    ============================================================ */
+    .resultados-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .resultados-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .resultados-count strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       GRILLA DE PRODUCTOS
+    ============================================================ */
+    .grilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    /* ============================================================
+       CARD DE PRODUCTO
+    ============================================================ */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+      cursor: default;
+    }
+
+    .card:hover {
+      border-color: var(--azul-mid);
+      box-shadow: 0 4px 16px rgba(11,42,111,0.10);
+      transform: translateY(-1px);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .badge-cat {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-cat.med   { background: var(--azul-light); color: var(--azul); }
+    .badge-cat.desc  { background: #e1f5ee; color: #085041; }
+    .badge-cat.ofer  { background: var(--naranja-bg); color: var(--naranja-txt); }
+    .badge-cat.est   { background: #fbeaf0; color: #72243e; }
+
+    .badge-stock {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-stock.ok   { background: var(--verde-bg); color: var(--verde-txt); }
+    .badge-stock.low  { background: var(--naranja-bg); color: var(--naranja-txt); }
+    .badge-stock.out  { background: var(--rojo-bg); color: var(--rojo-txt); }
+
+    .card-nombre {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card-lab {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-lab::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* ============================================================
+       ESTADO VACÍO
+    ============================================================ */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty svg { opacity: 0.25; margin-bottom: 12px; }
+    .empty p { font-size: 15px; }
+    .empty small { font-size: 13px; opacity: 0.7; }
+
+    /* ============================================================
+       SKELETON LOADER (mientras carga la API)
+    ============================================================ */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f4fa 25%, #e4eaf5 50%, #f0f4fa 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: var(--radius-sm);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .card-skeleton {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--azul);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+    }
+
+    .footer-link {
+      color: #6eb3f7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      background: #25D366;
+      color: #fff;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: opacity 0.15s;
+    }
+
+    .footer-wa:hover { opacity: 0.88; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 640px) {
+      .filtros-row { grid-template-columns: 1fr 1fr; }
+      header { padding: 0 16px; }
+      .hero h1 { font-size: 20px; }
+      .main { padding: 0 12px 40px; }
+    }
+
+    @media (max-width: 420px) {
+      .filtros-row { grid-template-columns: 1fr; }
+      .header-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header>
+  <a href="/index.html" class="back">← Volver al catálogo</a>
+  <a href="index.html" class="header-logo">
+    <!-- Si tenés logo.png descomentá la línea siguiente y borrá el texto -->
+    <img src="/logo.png" alt="Trade Farma"> 
+    <!--span class="header-logo-text">Trade<span>Farma</span></!--span-->
+  </a>
+  <span class="header-badge">Catálogo de productos</span>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<div class="hero">
+  <h1>Catálogo de Productos</h1>
+  <p>Consultá disponibilidad de stock en tiempo real</p>
+</div>
+
+<!-- ============================================================
+     CONTENIDO PRINCIPAL
+============================================================ -->
+<div class="main">
+
+  <!-- FILTROS -->
+  <div class="filtros-panel">
+    <div class="buscar-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input
+        class="input-buscar"
+        type="text"
+        id="buscar"
+        placeholder="Buscar por nombre de producto..."
+        oninput="filtrar()"
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="filtros-row">
+      <select id="categoria" onchange="filtrar()">
+        <option value="">Todas las categorías</option>
+        <option value="Medicamentos">Medicamentos</option>
+        <option value="Descartable">Descartable</option>
+        <option value="Ofertas">Ofertas</option>
+        <option value="Producto Estrella">Producto Estrella</option>
+      </select>
+
+      <select id="laboratorio" onchange="filtrar()">
+        <option value="">Todos los laboratorios</option>
+      </select>
+
+      <select id="ordenar" onchange="filtrar()">
+        <option value="">Ordenar por...</option>
+        <option value="az">Nombre A → Z</option>
+        <option value="za">Nombre Z → A</option>
+      </select>
+    </div>
+
+    <div class="filtros-bottom">
+      <label class="stock-toggle">
+        <input type="checkbox" id="soloStock" onchange="filtrar()" checked>
+        Mostrar solo productos con stock
+      </label>
+      <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar filtros</button>
+    </div>
+  </div>
+
+  <!-- BARRA DE RESULTADOS -->
+  <div class="resultados-bar">
+    <span class="resultados-count">Mostrando <strong id="contador">0</strong> productos</span>
+  </div>
+
+  <!-- GRILLA -->
+  <div class="grilla" id="grilla">
+    <!-- Los productos se insertan acá por JS -->
+  </div>
+
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <p>
+    ¿Te interesa adquirir nuestros productos? Creá tu usuario en
+    <a class="footer-link" href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank">
+      www.tradefarma.com.ar
+    </a>
+  </p>
+  <a class="footer-wa" href="https://wa.me/5493512444832" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="16" alt="WhatsApp">
+    Contacto por WhatsApp
+  </a>
+</footer>
+
+
+<script>
+/* ============================================================
+   DATOS DE PRODUCTOS
+   ---------------------------------------------------------------
+   CUANDO TENGAS LA API:
+   Reemplazá la función cargarProductos() por un fetch() a tu
+   endpoint. El array "productos" debe tener esta estructura:
+   {
+     nombre:  string,   // nombre del producto
+     lab:     string,   // laboratorio
+     cat:     string,   // "Medicamentos" | "Descartable" | "Ofertas" | "Producto Estrella"
+     stock:   string,   // "ok" | "low" | "out"
+   }
+
+   Ejemplo de conexión a API:
+   async function cargarProductos() {
+     mostrarSkeletons();
+     try {
+       const res = await fetch('https://tu-api.com/productos');
+       const data = await res.json();
+       productos = data.map(p => ({
+         nombre: p.descripcion,
+         lab:    p.laboratorio,
+         cat:    p.categoria,
+         stock:  p.stock > 10 ? 'ok' : p.stock > 0 ? 'low' : 'out',
+       }));
+       poblarFiltroLabs();
+       filtrar();
+     } catch (e) {
+       console.error('Error al cargar productos:', e);
+     }
+   }
+============================================================ */
+
+let productos = [
+  { nombre: "Ibuprofeno 400mg x 20 comp",        lab: "Lazar",  cat: "Medicamentos",      stock: "ok"  },
+  { nombre: "Paracetamol 500mg x 10 comp",        lab: "Puntanos",     cat: "Medicamentos",      stock: "ok"  },
+  { nombre: "Amoxicilina 500 Mg + Clavulanico Acido 125 Mg x 8 caps",        lab: "Savant",    cat: "Medicamentos",      stock: "ok"  },
+  { nombre: "Loratadina 10mg x 10 comp",          lab: "Vannier",  cat: "Medicamentos",      stock: "low" },
+  { nombre: "Omeprazol 20mg x 15 caps",           lab: "Savant",      cat: "Medicamentos",      stock: "ok"  },
+  { nombre: "Enalapril 10mg x 10 comp",           lab: "Lazar",     cat: "Medicamentos",      stock: "ok"  },
+  { nombre: "Metformina 500mg x 10 comp",         lab: "Lazar",      cat: "Medicamentos",      stock: "ok"  },
+  { nombre: "Clonazepam 0.5mg x 30 comp",         lab: "Clonazepam Rospaw",     cat: "Medicamentos",      stock: "low" },
+  { nombre: "Jeringa descartable 5ml",            lab: "Sr",     cat: "Descartable",       stock: "ok"  },
+  { nombre: "Jeringa descartable 10ml",           lab: "Sensimedical",     cat: "Descartable",       stock: "ok"  },
+  { nombre: "Guantes de látex talle M x 100",    lab: "Suplimed",   cat: "Descartable",       stock: "ok"  },
+  { nombre: "Barbijo tricapa x 50 unid",          lab: "Genérico",  cat: "Descartable",       stock: "ok"  },
+  { nombre: "Gasa estéril 10x10 x 10 unid",      lab: "Furey",  cat: "Descartable",       stock: "low" },
+  { nombre: "Glucómetro Accu-Chek",              lab: "Roche",     cat: "Producto Estrella", stock: "ok"  },
+  { nombre: "Tensiometro Aneroide Con Estetoscopio Adulto",        lab: "Euromix",     cat: "Producto Estrella", stock: "ok"  },
+  { nombre: "Ibuprofeno 600mg x 20 — OFERTA",    lab: "Roemmers",  cat: "Ofertas",           stock: "ok"  },
+  { nombre: "Paracetamol Infantil susp. 120ml",   lab: "Savant",     cat: "Ofertas",           stock: "ok"  },
+  { nombre: "Vitamina D3 Colecalciferol 2,5 Mg, Solucion Oral Gotas X 2 Ml",        lab: "Domingez",     cat: "Ofertas",           stock: "low" },
+  { nombre: "Acetilsalicilico Acido 100 Mg, Comprimido",        lab: "VENT3",     cat: "Medicamento",           stock: "low" },
+  { nombre: "Enalapril 10 Mg, Comprimido",        lab: "Lazar",     cat: "Medicamento",           stock: "low" },
+  { nombre: "Dexametasona 0,5 Mg, Comprimido",        lab: "Duncan",     cat: "Medicamento",           stock: "low" },
+  { nombre: "Atenolol 50 Mg, Comprimido",        lab: "Lazar",     cat: "Medicamento",           stock: "low" },
+  { nombre: "Tobramicina 3mg/ml+ Dexametasona 1Mg/ml suspencion oftalmica x5ml",        lab: "Klonal",     cat: "Medicamento",           stock: "low" },
+  { nombre: "Digoxina 0,25Mg/ml inyectable 1ml",        lab: "Biol",     cat: "Medicamento",           stock: "low" },
+  { nombre: "Diclofenac Sodico100 Mg, capsula, Comprimido",        lab: "Biotenk",     cat: "Medicamento",           stock: "low" },
+
+];
+
+
+/* ============================================================
+   MAPAS PARA BADGES
+============================================================ */
+const catClass = {
+  "Medicamentos":      "med",
+  "Descartable":       "desc",
+  "Ofertas":           "ofer",
+  "Producto Estrella": "est",
+};
+
+const stockLabel = { ok: "En stock", low: "Poco stock", out: "Sin stock" };
+
+/* ============================================================
+   POBLAR FILTRO DE LABORATORIOS
+============================================================ */
+function poblarFiltroLabs() {
+  const sel = document.getElementById("laboratorio");
+  const labs = [...new Set(productos.map(p => p.lab))].sort();
+  // Limpiar opciones excepto la primera
+  while (sel.options.length > 1) sel.remove(1);
+  labs.forEach(l => {
+    const o = document.createElement("option");
+    o.value = l;
+    o.textContent = l;
+    sel.appendChild(o);
+  });
+}
+
+/* ============================================================
+   RENDERIZAR CARD
+============================================================ */
+function renderCard(p) {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <div class="card-top">
+      <span class="badge-cat ${catClass[p.cat] || ''}">${p.cat}</span>
+      <span class="badge-stock ${p.stock}">${stockLabel[p.stock] || p.stock}</span>
+    </div>
+    <div class="card-nombre">${p.nombre}</div>
+    <div class="card-lab">${p.lab}</div>
+  `;
+  return div;
+}
+
+/* ============================================================
+   FILTRAR Y RENDERIZAR
+============================================================ */
+function filtrar() {
+  const q         = document.getElementById("buscar").value.toLowerCase().trim();
+  const cat       = document.getElementById("categoria").value;
+  const lab       = document.getElementById("laboratorio").value;
+  const orden     = document.getElementById("ordenar").value;
+  const soloStock = document.getElementById("soloStock").checked;
+
+  let lista = productos.filter(p => {
+    if (soloStock && p.stock === "out") return false;
+    if (q && !p.nombre.toLowerCase().includes(q) && !p.lab.toLowerCase().includes(q)) return false;
+    if (cat && p.cat !== cat) return false;
+    if (lab && p.lab !== lab) return false;
+    return true;
+  });
+
+  if (orden === "az") lista.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+  else if (orden === "za") lista.sort((a, b) => b.nombre.localeCompare(a.nombre, "es"));
+
+  document.getElementById("contador").textContent = lista.length;
+
+  const grilla = document.getElementById("grilla");
+  grilla.innerHTML = "";
+
+  if (lista.length === 0) {
+    grilla.innerHTML = `
+      <div class="empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <p>No se encontraron productos</p>
+        <small>Probá con otros términos o limpiá los filtros</small>
+      </div>`;
+    return;
+  }
+
+  lista.forEach(p => grilla.appendChild(renderCard(p)));
+}
+
+/* ============================================================
+   LIMPIAR FILTROS
+============================================================ */
+function limpiarFiltros() {
+  document.getElementById("buscar").value       = "";
+  document.getElementById("categoria").value    = "";
+  document.getElementById("laboratorio").value  = "";
+  document.getElementById("ordenar").value      = "";
+  document.getElementById("soloStock").checked  = true;
+  filtrar();
+}
+
+/* ============================================================
+   SKELETONS (para cuando cargue la API)
+============================================================ */
+function mostrarSkeletons(n = 12) {
+  const grilla = document.getElementById("grilla");
+  grilla.innerHTML = "";
+  for (let i = 0; i < n; i++) {
+    grilla.innerHTML += `
+      <div class="card-skeleton">
+        <div class="skeleton" style="height:20px; width:60%;"></div>
+        <div class="skeleton" style="height:14px; width:90%; margin-top:4px;"></div>
+        <div class="skeleton" style="height:14px; width:75%;"></div>
+        <div class="skeleton" style="height:12px; width:40%;"></div>
+      </div>`;
+  }
+}
+
+/* ============================================================
+   CARGA INICIAL
+============================================================ */
+function cargarProductos() {
+  // -------------------------------------------------------
+  // CUANDO TENGAS LA API, reemplazá este bloque por:
+  //
+  // mostrarSkeletons();
+  // fetch('https://tu-api.com/productos')
+  //   .then(r => r.json())
+  //   .then(data => {
+  //     productos = data.map(p => ({
+  //       nombre: p.descripcion,
+  //       lab:    p.laboratorio,
+  //       cat:    p.categoria,
+  //       stock:  p.stock > 10 ? 'ok' : p.stock > 0 ? 'low' : 'out',
+  //     }));
+  //     poblarFiltroLabs();
+  //     filtrar();
+  //   });
+  // -------------------------------------------------------
+  poblarFiltroLabs();
+  filtrar();
+}
+
+cargarProductos();
+</script>
+</body>
+</html>
