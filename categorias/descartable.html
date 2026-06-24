@@ -2,12 +2,70 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>descartable - Catálogo Trade Farma</title>
+  <title>Catálogo Trade Farma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2 family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { margin:0; font-family: Arial; background:#f5f5f5; }
-    h1 { background:#1976d2; color:white; padding:15px; text-align:center; }
-    iframe { width:100%; height:90vh; border:none; }
-      .back {
+    /* ============================================================
+       VARIABLES Y ESTILOS GENERALES
+    ============================================================ */
+    :root {
+      --azul: #0b2a6f;
+      --azul-light: #e6f1fb;
+      --azul-mid: #378add;
+      --bg-page: #f5f7fa;
+      --bg-card: #ffffff;
+      --text-primary: #1a1a2e;
+      --text-muted: #6b7280;
+      --font: 'DM Sans', Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: white;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    header img {
+      max-width: 180px;
+      width: 80%;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      color: var(--azul);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: var(--azul);
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      border-left: 4px solid var(--azul-mid);
+      padding-left: 10px;
+    }   .bac {
   display: inline-block;
   margin: 12px;
   padding: 8px 14px;
@@ -18,102 +76,280 @@
   font-size: 14px;
   font-weight: bold;
 }
-.back:hover {
+.bac:hover {
   background: #143c9c;
 }
-.contenedor {
-      display: flex;
-      justify-content: center;
-      padding: 10px;
+
+    /* ============================================================
+       BOTÓN PRINCIPAL AL CATÁLOGO UNIFICADO
+    ============================================================ */
+    .btn-catalogo {
+      display: block;
+      background: var(--azul);
+      color: white;
+      text-align: center;
+      padding: 18px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(11, 42, 111, 0.2);
+      transition: all 0.2s ease;
+      margin-bottom: 20px;
     }
 
-    iframe {
-      width: 95%;
-      max-width: 1200px;
-      height: 85vh;
-      border: none;
+    .btn-catalogo:hover {
+      background: var(--azul-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(55, 138, 221, 0.3);
+    }
+
+    /* ============================================================
+       SECCIÓN VIDEO DE YOUTUBE (RESPONSIVE 16:9)
+    ============================================================ */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* ============================================================
+       SECCIÓN PREGUNTAS FRECUENTES (ACCORDION)
+    ============================================================ */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
       background: white;
+      transition: background 0.15s;
+    }
+
+    .faq-question:hover {
+      background: var(--azul-light);
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--azul-mid);
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    /* Clase activa controlada por JS */
+    .faq-item.active .faq-question::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background: #fafbfc;
+    }
+
+    .faq-answer p {
+      padding: 16px 20px;
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      padding: 30px 15px;
+      text-align: center;
+      background: white;
+      font-size: 14px;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.03);
+    }
+
+    footer p { margin-bottom: 12px; line-height: 1.5; }
+    footer a { color: var(--azul); text-decoration: none; font-weight: bold; }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background-color: #25D366;
+      color: #ffffff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: opacity 0.15s;
+    }
+    .btn-wa:hover { opacity: 0.9; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 22px; }
+      h2 { font-size: 18px; }
+      .btn-catalogo { font-size: 16px; padding: 15px; }
     }
   </style>
 </head>
-<script>
-  function printSheet() {
-    const iframe = document.querySelector("iframe");
-    iframe.contentWindow.focus();
-    iframe.contentWindow.print();
-  }
-</script>
 <body>
-<a href="/index.html" class="back">← Volver al catálogo</a>
-<h1>Descartable</h1>
-<div class="contenedor">
-<iframe 
-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=1576998111&single=true&widget=true&headers=false">
+<a href="/index.html" class="bac">← Volver al catálogo</a>
+<header>
+  <img src="/logo.png" alt="Trade Farma">
+</header>
+
+<div class="container">
+  
+  <h1>Guías de práctica</h1>
+
+ 
+
+  <h2>¿Cómo utilizar la plataforma?</h2>
+  <div class="video-container">
+   <iframe 
+  src="https://www.youtube.com/embed/199WtNgmKPc" 
+  title="Cómo usar Trade Farma"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
 </iframe>
-</div>
-<div style="text-align:center; margin: 10px;">
-  <a 
-    href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=1576998111&single=true&widget=true&headers=false&print=true"
-    target="_blank"
-    style="
-      display: inline-block;
-      padding: 10px 16px;
-      background: #1976d2;
-      color: white;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: bold;
-      text-decoration: none;
-    "
-  >
-    🖨️ Imprimir catálogo
-  </a>
-</div>
-<div style="
-  max-width: 420px;
-  padding: 16px 18px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #fafafa;
-">
+  </div>
 
-  <strong style="font-size: 16px; color:#1f2937;">
-    Trade Farma – Droguería
-  </strong><br>
+  <h2>Preguntas Frecuentes</h2>
 
-  <span style="font-size: 13px; color:#4b5563;">
-    🌐 <a href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank" style="color:#2563eb; text-decoration:none;">
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">¿Cómo consulto el stock disponible?</div>
+    <div class="faq-answer">
+      <p>Al ingresar a la sección de compras (haciendo clic en el botón superior), verá nuestro listado interactivo. Junto a la descripción de cada producto, encontrará un círculo de color que le indicará la disponibilidad actual: 
+        <br><br>
+        🟢 <strong>Verde:</strong> Stock alto / Disponible.<br>
+        🟡 <strong>Amarillo:</strong> Stock medio / Pocas unidades.<br>
+        ⚫ <strong>Gris:</strong> Sin stock momentáneamente.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">¿Cómo debo cargar las cantidades de los productos?</div>
+    <div class="faq-answer">
+     <p>Es muy importante tener en cuenta que <strong>todos los productos se cargan por unidad</strong> en el selector de compras. 
+        <br><br>
+        En el caso de los medicamentos, al final de la descripción verá un código entre paréntesis, por ejemplo: <strong>(H-8-80)</strong>. Este código se lee de la siguiente manera:
+        <br><br>
+        • <strong>H:</strong> Tipo de presentación.<br>
+        • <strong>Número del medio (8):</strong> Indica las unidades que trae cada <strong>blíster</strong>.<br>
+        • <strong>Número final (80):</strong> Indica las unidades totales que trae la <strong>caja completa</strong>.
+        <br><br>
+        Como el sistema suma estrictamente por unidades sueltas, si usted desea encargar 1 blíster de este medicamento, deberá colocar el número <strong>8</strong> en la cantidad; si desea 2 blísteres, colocará 16, y así sucesivamente.
+      </p>
+      
+      <div style="text-align: center; padding: 0 20px 20px 20px;">
+        <img src="/image.png" alt="Ejemplo de código de empaque Trade Farma" 
+             style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e1e8ed;">
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">¿Cómo puedo ver la descripción completa de los productos si se ve cortada?</div>
+    <div class="faq-answer">
+      <p>Al ingresar a la sección "Realizar Pedido", es común que algunas descripciones largas se vean un poco comprimidas o amontonadas. Esto sucede porque el menú de navegación izquierdo ocupa espacio en su pantalla.
+        <br><br>
+        Para solucionarlo y tener una visualización completa, prolija y mucho más amplia, solo debe hacer clic en el <strong>botón de las tres rayitas horizontales (☰)</strong> ubicado en la esquina superior izquierda de la barra azul. 
+        <br><br>
+        Al tocarlo, el menú lateral se ocultará automáticamente, dándole todo el ancho de la pantalla a la lista de productos para que pueda leer las descripciones y códigos de empaque sin problemas.
+      </p>
+
+      <div style="text-align: center; padding: 0 20px 20px 20px;">
+        <img src="/para pag.png" alt="Cómo ocultar el menú lateral Trade Farma" 
+             style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e1e8ed;">
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">¿Cómo me registro en la web?</div>
+    <div class="faq-answer">
+     <p>Para registrarse, simplemente debe <strong>comunicarse de forma directa con nosotros</strong>. Nuestro equipo le solicitará los datos comerciales necesarios para realizar la creación y configuración de su usuario de manera inmediata.
+        <br><br>
+        Recuerde que una vez que tenga su usuario activo en la plataforma de autogestión, no solo podrá emitir pedidos, sino que también tendrá acceso inmediato a <strong>beneficios únicos y ofertas exclusivas</strong> en nuestro catálogo que no están visibles para el público general.
+        <br><br>
+        ¡Haga clic en el botón de WhatsApp que se encuentra al pie de la página y solicite su alta hoy mismo!
+      </p>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    Si estás interesado en adquirir nuestros productos,<br>
+    te invitamos a crear tu usuario en nuestra página web.
+  </p>
+  <p style="margin-bottom: 16px;">
+    🌐 <a href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank">
       www.tradefarma.com.ar
     </a>
-  </span>
-
-  <p style="font-size: 14px; color:#374151; margin-top: 12px; line-height: 1.5;">
-    En caso de requerir algún producto que no se encuentre incluido en el presente catálogo,
-    lo invitamos a consultarnos. Con gusto podremos enviarle la correspondiente cotización.
   </p>
-
-  <a href="https://wa.me/5493512444832" target="_blank"
-     style="
-       display: inline-flex;
-       align-items: center;
-       gap: 8px;
-       padding: 10px 14px;
-       background-color: #25D366;
-       color: #ffffff;
-       border-radius: 6px;
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 14px;
-     ">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="WhatsApp"
-         style="width:18px;">
+  <a class="btn-wa" href="https://wa.me/5493512444832" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:18px;">
     Contacto por WhatsApp
   </a>
+</footer>
 
-</div>
-
+<script>
+/* ============================================================
+   LÓGICA PARA EL ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+============================================================ */
+function toggleFaq(elementoPregunta) {
+  const item = elementoPregunta.parentElement;
+  const respuesta = item.querySelector('.faq-answer');
+  
+  // Si el elemento cliqueado ya estaba abierto, lo cerramos
+  if (item.classList.contains('active')) {
+    item.classList.remove('active');
+    respuesta.style.maxHeight = null;
+  } else {
+    // Cerramos cualquier otro acordeón abierto para que sea más ordenado
+    document.querySelectorAll('.faq-item').forEach(el => {
+      el.classList.remove('active');
+      el.querySelector('.faq-answer').style.maxHeight = null;
+    });
+    
+    // Abrimos el actual calculando su altura dinámica interna
+    item.classList.add('active');
+    respuesta.style.maxHeight = respuesta.scrollHeight + "px";
+  }
+}
+</script>
 
 </body>
 </html>

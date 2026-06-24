@@ -4,244 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo Trade Farma</title>
-  <link rel="icon" type="image/x-icon" href="/logo.png">
+  <link rel="icon" type="image/x-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ============================================================
-       VARIABLES Y RESET
-    ============================================================ */
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
     :root {
       --azul:        #0b2a6f;
-      --azul-light:  #e6f1fb;
-      --azul-mid:    #378add;
-      --verde-bg:    #eaf3de;
-      --verde-txt:   #27500a;
-      --naranja-bg:  #faeeda;
-      --naranja-txt: #633806;
-      --rojo-bg:     #fcebeb;
-      --rojo-txt:    #791f1f;
-      --bg-page:     #f0f4fa;
+      --azul-mid:    #1a4fae;
+      --azul-light:  #e8f0fd;
+      --naranja:     #e8541a;
+      --bg:          #f0f3f9;
       --bg-card:     #ffffff;
-      --border:      rgba(0,0,0,0.09);
-      --text-primary:#1a1a2e;
-      --text-muted:  #6b7280;
-      --font:        'DM Sans', sans-serif;
-      --radius-sm:   6px;
-      --radius-md:   10px;
-      --radius-lg:   14px;
+      --border:      #dde3ef;
+      --text:        #111827;
+      --muted:       #6b7280;
+      --font:        'IBM Plex Sans', sans-serif;
+      --mono:        'IBM Plex Mono', monospace;
+
+      /* colores de cada lista */
+      --l1-bg: #e8f5e9; --l1-txt: #1b5e20; --l1-head: #2e7d32;
+      --l2-bg: #e3f2fd; --l2-txt: #0d47a1; --l2-head: #1565c0;
+      --l3-bg: #fff8e1; --l3-txt: #e65100; --l3-head: #ef6c00;
+      --l4-bg: #fce4ec; --l4-txt: #880e4f; --l4-head: #ad1457;
+      --l5-bg: #ede7f6; --l5-txt: #4527a0; --l5-head: #6a1b9a;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font);
-      background: var(--bg-page);
-      color: var(--text-primary);
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
+      font-size: 14px;
     }
 
-    /* ============================================================
+
+    /* =====================================================
        HEADER
-    ============================================================ */
+    ===================================================== */
+
     header {
       background: var(--azul);
-      padding: 0 24px;
-      height: 64px;
+      padding: 0 28px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(11,42,111,0.25);
+      z-index: 200;
+      box-shadow: 0 2px 16px rgba(11,42,111,0.28);
     }
-
-    .header-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .header-logo img {
-      height: 36px;
-      filter: brightness(0) invert(1);
-    }
-
-    .header-logo-text {
-      font-size: 20px;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.3px;
-    }
-
-    .header-logo-text span { color: #ec8e41; }
-
-    .header-badge {
-      font-size: 12px;
-      background: rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.85);
-      padding: 4px 12px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.2);
-      letter-spacing: 0.2px;
-    }
-       .back {
+    .bac {
   display: inline-block;
   margin: 12px;
   padding: 8px 14px;
-  background: #ebedf1;
-  color: black;
+  background: #0b2a6f;
+  color: white;
   text-decoration: none;
   border-radius: 6px;
   font-size: 14px;
   font-weight: bold;
 }
-    
-    .back:hover {
-  background: #e7eaf3;
+.bac:hover {
+  background: #143c9c;
+}
+
+    .logo-text {
+      font-size: 19px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+    .logo-text span { color: #6eb3f7; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    /* ============================================================
-       HERO / TÍTULO
-    ============================================================ */
+    .live-dot {
+      width: 7px; height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .live-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.3px;
+    }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
     .hero {
       background: var(--azul);
-      padding: 32px 24px 48px;
-      text-align: center;
+      padding: 28px 28px 44px;
       position: relative;
       overflow: hidden;
     }
-
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
     .hero::after {
       content: '';
       position: absolute;
       bottom: -1px; left: 0; right: 0;
-      height: 32px;
-      background: var(--bg-page);
-      clip-path: ellipse(55% 100% at 50% 100%);
+      height: 28px;
+      background: var(--bg);
+      clip-path: ellipse(52% 100% at 50% 100%);
     }
 
     .hero h1 {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+      position: relative;
     }
-
     .hero p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      position: relative;
     }
 
-    /* ============================================================
-       CONTENEDOR PRINCIPAL
-    ============================================================ */
+    /* =====================================================
+       MAIN
+    ===================================================== */
     .main {
-      max-width: 1100px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0 20px 60px;
     }
 
-    /* ============================================================
-       PANEL DE FILTROS
-    ============================================================ */
+    /* =====================================================
+       PANEL FILTROS
+    ===================================================== */
     .filtros-panel {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      margin-top: -20px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: -18px;
+      margin-bottom: 18px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.07);
       display: flex;
-      flex-direction: column;
       gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .filtros-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-    }
-
-    .input-buscar {
-      width: 100%;
-      padding: 10px 14px 10px 38px;
-      font-family: var(--font);
-      font-size: 14px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: #f8fafc;
-      color: var(--text-primary);
-      outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
+    .search-wrap {
       position: relative;
+      flex: 1;
+      min-width: 220px;
     }
-
-    .input-buscar:focus {
-      border-color: var(--azul-mid);
-      box-shadow: 0 0 0 3px rgba(55,138,221,0.15);
-      background: #fff;
-    }
-
-    .buscar-wrap {
-      position: relative;
-      grid-column: 1 / -1;
-    }
-
-    .buscar-wrap svg {
+    .search-wrap svg {
       position: absolute;
-      left: 12px;
+      left: 11px;
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
-      opacity: 0.4;
+      color: var(--muted);
+    }
+    .input-search {
+      width: 100%;
+      padding: 9px 12px 9px 36px;
+      font-family: var(--font);
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #f8fafc;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .input-search:focus {
+      border-color: var(--azul-mid);
+      box-shadow: 0 0 0 3px rgba(26,79,174,0.12);
+      background: #fff;
     }
 
-    select {
-      width: 100%;
-      padding: 10px 12px;
+    .sel-wrap select {
+      padding: 9px 28px 9px 11px;
       font-family: var(--font);
       font-size: 13px;
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: #f8fafc;
-      color: var(--text-primary);
+      border-radius: 8px;
+      background: #f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 9px center;
+      appearance: none;
+      color: var(--text);
       outline: none;
       cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      padding-right: 28px;
-      transition: border-color 0.15s;
     }
+    .sel-wrap select:focus { border-color: var(--azul-mid); }
 
-    select:focus { border-color: var(--azul-mid); outline: none; }
-
-    .filtros-bottom {
+    .filtros-right {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding-top: 4px;
+      gap: 10px;
+      margin-left: auto;
     }
 
     .stock-toggle {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--muted);
       cursor: pointer;
       user-select: none;
+      white-space: nowrap;
     }
-
-    .stock-toggle input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
+    .stock-toggle input {
+      width: 15px; height: 15px;
       accent-color: var(--azul);
       cursor: pointer;
     }
@@ -249,529 +242,517 @@
     .btn-limpiar {
       font-family: var(--font);
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--muted);
       background: none;
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 5px 12px;
+      border-radius: 7px;
+      padding: 6px 12px;
       cursor: pointer;
+      white-space: nowrap;
       transition: all 0.15s;
     }
-
     .btn-limpiar:hover {
-      border-color: var(--azul-mid);
       color: var(--azul);
+      border-color: var(--azul-mid);
       background: var(--azul-light);
     }
 
-    /* ============================================================
-       BARRA DE RESULTADOS
-    ============================================================ */
+    /* =====================================================
+       BARRA RESULTADOS
+    ===================================================== */
     .resultados-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      padding: 0 2px;
     }
-
     .resultados-count {
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--muted);
     }
+    .resultados-count strong { color: var(--text); font-weight: 600; }
 
-    .resultados-count strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    /* ============================================================
-       GRILLA DE PRODUCTOS
-    ============================================================ */
-    .grilla {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-    }
-
-    /* ============================================================
-       CARD DE PRODUCTO
-    ============================================================ */
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px;
+    /* =====================================================
+       LEYENDA LISTAS
+    ===================================================== */
+    .leyenda {
       display: flex;
-      flex-direction: column;
       gap: 8px;
-      transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
-      cursor: default;
+      flex-wrap: wrap;
     }
-
-    .card:hover {
-      border-color: var(--azul-mid);
-      box-shadow: 0 4px 16px rgba(11,42,111,0.10);
-      transform: translateY(-1px);
-    }
-
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 6px;
-    }
-
-    .badge-cat {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 3px 8px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .badge-cat.med   { background: var(--azul-light); color: var(--azul); }
-    .badge-cat.desc  { background: #e1f5ee; color: #085041; }
-    .badge-cat.ofer  { background: var(--naranja-bg); color: var(--naranja-txt); }
-    .badge-cat.est   { background: #fbeaf0; color: #72243e; }
-
-    .badge-stock {
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .badge-stock.ok   { background: var(--verde-bg); color: var(--verde-txt); }
-    .badge-stock.low  { background: var(--naranja-bg); color: var(--naranja-txt); }
-    .badge-stock.out  { background: var(--rojo-bg); color: var(--rojo-txt); }
-
-    .card-nombre {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-primary);
-      line-height: 1.4;
-    }
-
-    .card-lab {
-      font-size: 12px;
-      color: var(--text-muted);
+    .ley-item {
       display: flex;
       align-items: center;
-      gap: 4px;
-    }
-
-    .card-lab::before {
-      content: '';
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background: var(--text-muted);
-      border-radius: 50%;
-      opacity: 0.5;
-    }
-
-    /* ============================================================
-       ESTADO VACÍO
-    ============================================================ */
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 48px 20px;
-      color: var(--text-muted);
-    }
-
-    .empty svg { opacity: 0.25; margin-bottom: 12px; }
-    .empty p { font-size: 15px; }
-    .empty small { font-size: 13px; opacity: 0.7; }
-
-    /* ============================================================
-       SKELETON LOADER (mientras carga la API)
-    ============================================================ */
-    .skeleton {
-      background: linear-gradient(90deg, #f0f4fa 25%, #e4eaf5 50%, #f0f4fa 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: var(--radius-sm);
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    .card-skeleton {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* ============================================================
-       FOOTER
-    ============================================================ */
-    footer {
-      background: var(--azul);
-      padding: 28px 24px;
-      text-align: center;
-    }
-
-    footer p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 10px;
-    }
-
-    .footer-link {
-      color: #6eb3f7;
-      text-decoration: none;
+      gap: 5px;
+      font-size: 11px;
       font-weight: 500;
     }
+    .ley-dot {
+      width: 10px; height: 10px;
+      border-radius: 3px;
+    }
 
+    /* =====================================================
+       TABLA
+    ===================================================== */
+    .tabla-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .tabla-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 820px;
+    }
+
+    thead th {
+      background: var(--azul);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 11px 14px;
+      text-align: left;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--naranja);
+      position: sticky;
+      top: 60px;
+      z-index: 10;
+    }
+
+    thead th.precio-head {
+      text-align: right;
+      font-family: var(--mono);
+    }
+
+    /* Cabeceras de listas con color propio */
+    thead th.l1 { background: var(--l1-head); }
+    thead th.l2 { background: var(--l2-head); }
+    thead th.l3 { background: var(--l3-head); }
+    thead th.l4 { background: var(--l4-head); }
+    thead th.l5 { background: var(--l5-head); }
+
+    tbody tr {
+      transition: background 0.1s;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover td { background: var(--azul-light) !important; }
+
+    tbody tr:nth-child(even) td { background: #f8fafc; }
+    tbody tr:nth-child(odd)  td { background: #fff; }
+
+    td {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .td-cod {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .td-nombre { font-weight: 500; line-height: 1.35; }
+    .td-nombre small { display: block; font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 1px; }
+
+    .td-cat span {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+      background: var(--azul-light);
+      color: var(--azul);
+    }
+
+    .td-stock span {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .stock-ok  { background: #dcfce7; color: #15803d; }
+    .stock-low { background: #fef9c3; color: #854d0e; }
+    .stock-out { background: #fee2e2; color: #991b1b; }
+
+    /* Celdas de precio por lista */
+    .td-precio {
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .td-precio.l1 { color: var(--l1-txt); background: var(--l1-bg) !important; }
+    .td-precio.l2 { color: var(--l2-txt); background: var(--l2-bg) !important; }
+    .td-precio.l3 { color: var(--l3-txt); background: var(--l3-bg) !important; }
+    .td-precio.l4 { color: var(--l4-txt); background: var(--l4-bg) !important; }
+    .td-precio.l5 { color: var(--l5-txt); background: var(--l5-bg) !important; }
+
+    /* Estado vacío */
+    .empty-row td {
+      text-align: center;
+      padding: 48px;
+      color: var(--muted);
+    }
+    .empty-row td p { font-size: 15px; margin-bottom: 4px; }
+    .empty-row td small { font-size: 12px; opacity: 0.7; }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      background: var(--azul);
+      padding: 24px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .footer-link { color: #6eb3f7; text-decoration: none; font-weight: 500; }
     .footer-wa {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 18px;
+      gap: 7px;
+      padding: 8px 16px;
       background: #25D366;
       color: #fff;
-      border-radius: var(--radius-sm);
+      border-radius: 7px;
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
-      margin-top: 10px;
-      transition: opacity 0.15s;
     }
 
-    .footer-wa:hover { opacity: 0.88; }
-
-    /* ============================================================
+    /* =====================================================
        RESPONSIVE
-    ============================================================ */
+    ===================================================== */
     @media (max-width: 640px) {
-      .filtros-row { grid-template-columns: 1fr 1fr; }
       header { padding: 0 16px; }
-      .hero h1 { font-size: 20px; }
+      .hero { padding: 22px 16px 40px; }
       .main { padding: 0 12px 40px; }
-    }
-
-    @media (max-width: 420px) {
-      .filtros-row { grid-template-columns: 1fr; }
-      .header-badge { display: none; }
+      .filtros-panel { gap: 8px; }
+      .filtros-right { margin-left: 0; width: 100%; justify-content: space-between; }
     }
   </style>
 </head>
 <body>
+  <a href="/index.html" class="bac">← Volver al catálogo</a>
 
-<!-- ============================================================
-     HEADER
-============================================================ -->
 <header>
-  <a href="/index.html" class="back">← Volver al catálogo</a>
-  <a href="/index.html" class="header-logo">
-    <!-- Si tenés logo.png descomentá la línea siguiente y borrá el texto -->
-    <!--img src="/logo.png" alt="Trade Farma"--> 
-    <span class="header-logo-text">Trade<span>Farma</span></!--span>
-  </a>
-  <span class="header-badge">Catálogo de productos</span>
+  <div class="logo-text">Trade<span>Farma</span></div>
+  <div class="header-right">
+    <div class="live-dot"></div>
+    <span class="live-label">Catálogo en vivo</span>
+  </div>
 </header>
 
-<!-- ============================================================
-     HERO
-============================================================ -->
 <div class="hero">
-  <h1>Catálogo de Productos</h1>
-  <p>Consultá disponibilidad de stock en tiempo real</p>
+  <h1>Lista de Precios</h1>
+  <p>Productos con stock disponible · Precios actualizados</p>
 </div>
 
-<!-- ============================================================
-     CONTENIDO PRINCIPAL
-============================================================ -->
 <div class="main">
 
   <!-- FILTROS -->
   <div class="filtros-panel">
-    <div class="buscar-wrap">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" stroke-width="2">
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
       </svg>
-      <input
-        class="input-buscar"
-        type="text"
-        id="buscar"
-        placeholder="Buscar por nombre de producto..."
-        oninput="filtrar()"
-        autocomplete="off"
-      >
+      <input class="input-search" type="text" id="buscar"
+        placeholder="Buscar por nombre, código o laboratorio..."
+        oninput="filtrar()" autocomplete="off">
     </div>
 
-    <div class="filtros-row">
+    <div class="sel-wrap">
       <select id="categoria" onchange="filtrar()">
         <option value="">Todas las categorías</option>
-        <option value="Medicamentos">Medicamentos</option>
-        <option value="Descartable">Descartable</option>
-        <option value="Ofertas">Ofertas</option>
-        <option value="Producto Estrella">Producto Estrella</option>
       </select>
+    </div>
 
+    <div class="sel-wrap">
       <select id="laboratorio" onchange="filtrar()">
         <option value="">Todos los laboratorios</option>
       </select>
-
-      <select id="ordenar" onchange="filtrar()">
-        <option value="">Ordenar por...</option>
-        <option value="az">Nombre A → Z</option>
-        <option value="za">Nombre Z → A</option>
-      </select>
     </div>
 
-    <div class="filtros-bottom">
+    <div class="filtros-right">
       <label class="stock-toggle">
         <input type="checkbox" id="soloStock" onchange="filtrar()" checked>
-        Mostrar solo productos con stock
+        Solo con stock
       </label>
-      <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar filtros</button>
+      <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar</button>
     </div>
   </div>
 
-  <!-- BARRA DE RESULTADOS -->
+  <!-- BARRA RESULTADOS + LEYENDA -->
   <div class="resultados-bar">
     <span class="resultados-count">Mostrando <strong id="contador">0</strong> productos</span>
+    <div class="leyenda">
+      <div class="ley-item"><div class="ley-dot" style="background:var(--l1-head)"></div><span style="color:var(--l1-head)">Lista 1 +20%</span></div>
+      <div class="ley-item"><div class="ley-dot" style="background:var(--l2-head)"></div><span style="color:var(--l2-head)">Lista 2 +25%</span></div>
+      <div class="ley-item"><div class="ley-dot" style="background:var(--l3-head)"></div><span style="color:var(--l3-head)">Lista 3 +30%</span></div>
+      <div class="ley-item"><div class="ley-dot" style="background:var(--l4-head)"></div><span style="color:var(--l4-head)">Lista 4 +35%</span></div>
+      <div class="ley-item"><div class="ley-dot" style="background:var(--l5-head)"></div><span style="color:var(--l5-head)">Lista 5 +40%</span></div>
+    </div>
   </div>
 
-  <!-- GRILLA -->
-  <div class="grilla" id="grilla">
-    <!-- Los productos se insertan acá por JS -->
+  <!-- TABLA -->
+  <div class="tabla-wrap">
+    <div class="tabla-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:90px">Código</th>
+            <th>Producto / Nombre Comercial</th>
+            <th>Categoría</th>
+            <th>Laboratorio</th>
+            <th style="width:80px">Stock</th>
+            <th class="precio-head l1" style="width:110px">Lista 1<br><small style="font-weight:400;opacity:.8;font-size:10px">+20%</small></th>
+            <th class="precio-head l2" style="width:110px">Lista 2<br><small style="font-weight:400;opacity:.8;font-size:10px">+25%</small></th>
+            <th class="precio-head l3" style="width:110px">Lista 3<br><small style="font-weight:400;opacity:.8;font-size:10px">+30%</small></th>
+            <th class="precio-head l4" style="width:110px">Lista 4<br><small style="font-weight:400;opacity:.8;font-size:10px">+35%</small></th>
+            <th class="precio-head l5" style="width:110px">Lista 5<br><small style="font-weight:400;opacity:.8;font-size:10px">+40%</small></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
   </div>
 
 </div>
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
 <footer>
   <p>
-    ¿Te interesa adquirir nuestros productos? Creá tu usuario en
-    <a class="footer-link" href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank">
-      www.tradefarma.com.ar
-    </a>
+    ¿Querés comprar? Creá tu usuario en
+    <a class="footer-link" href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank">www.tradefarma.com.ar</a>
   </p>
   <a class="footer-wa" href="https://wa.me/5493512444832" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="16" alt="WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="15" alt="">
     Contacto por WhatsApp
   </a>
 </footer>
 
 
 <script>
-/* ============================================================
+/* =============================================================
    DATOS DE PRODUCTOS
    ---------------------------------------------------------------
-   CUANDO TENGAS LA API:
-   Reemplazá la función cargarProductos() por un fetch() a tu
-   endpoint. El array "productos" debe tener esta estructura:
+   ESTRUCTURA DE CADA PRODUCTO:
    {
-     nombre:  string,   // nombre del producto
-     lab:     string,   // laboratorio
-     cat:     string,   // "Medicamentos" | "Descartable" | "Ofertas" | "Producto Estrella"
-     stock:   string,   // "ok" | "low" | "out"
+     codigo:   string,   // código del sistema
+     nombre:   string,   // nombre genérico
+     nc:       string,   // nombre comercial
+     cat:      string,   // categoría
+     lab:      string,   // laboratorio / fabricante
+     costo:    number,   // precio base (costo)
+     stock:    string,   // "ok" | "low" | "out"
    }
 
-   Ejemplo de conexión a API:
+   Los precios de cada lista se calculan automáticamente:
+     Lista 1 = costo * 1.20
+     Lista 2 = costo * 1.25
+     Lista 3 = costo * 1.30
+     Lista 4 = costo * 1.35
+     Lista 5 = costo * 1.40
+
+   ---------------------------------------------------------------
+   CUANDO TENGAS LA API, reemplazá cargarProductos() así:
+
    async function cargarProductos() {
      mostrarSkeletons();
      try {
-       const res = await fetch('https://tu-api.com/productos');
+       const res  = await fetch('https://tu-api.com/productos');
        const data = await res.json();
-       productos = data.map(p => ({
-         nombre: p.descripcion,
-         lab:    p.laboratorio,
-         cat:    p.categoria,
-         stock:  p.stock > 10 ? 'ok' : p.stock > 0 ? 'low' : 'out',
-       }));
-       poblarFiltroLabs();
+       productos = data
+         .filter(p => p.stock > 0)          // solo con stock
+         .map(p => ({
+           codigo: p.codigo,
+           nombre: p.descripcion,
+           nc:     p.nombre_comercial || '',
+           cat:    p.categoria,
+           lab:    p.laboratorio,
+           costo:  parseFloat(p.costo),
+           stock:  p.stock > 10 ? 'ok' : p.stock > 0 ? 'low' : 'out',
+         }));
+       poblarFiltros();
        filtrar();
-     } catch (e) {
-       console.error('Error al cargar productos:', e);
+     } catch(e) {
+       console.error('Error API:', e);
      }
    }
-============================================================ */
+============================================================= */
 
 let productos = [
-  { nombre: "Ibuprofeno 400mg x 20 comp",        lab: "Lazar",  cat: "Medicamentos",      stock: "ok"  },
-  { nombre: "Paracetamol 500mg x 10 comp",        lab: "Puntanos",     cat: "Medicamentos",      stock: "ok"  },
-  { nombre: "Amoxicilina 500 Mg + Clavulanico Acido 125 Mg x 8 caps",        lab: "Savant",    cat: "Medicamentos",      stock: "ok"  },
-  { nombre: "Loratadina 10mg x 10 comp",          lab: "Vannier",  cat: "Medicamentos",      stock: "low" },
-  { nombre: "Omeprazol 20mg x 15 caps",           lab: "Savant",      cat: "Medicamentos",      stock: "ok"  },
-  { nombre: "Enalapril 10mg x 10 comp",           lab: "Lazar",     cat: "Medicamentos",      stock: "ok"  },
-  { nombre: "Metformina 500mg x 10 comp",         lab: "Lazar",      cat: "Medicamentos",      stock: "ok"  },
-  { nombre: "Clonazepam 0.5mg x 30 comp",         lab: "Rospaw",     cat: "Medicamentos",      stock: "low" },
-  { nombre: "Jeringa descartable 5ml",            lab: "Sr",     cat: "Descartable",       stock: "ok"  },
-  { nombre: "Jeringa descartable 10ml",           lab: "Sensimedical",     cat: "Descartable",       stock: "ok"  },
-  { nombre: "Guantes de látex talle M x 100",    lab: "Suplimed",   cat: "Descartable",       stock: "ok"  },
-  { nombre: "Barbijo tricapa x 50 unid",          lab: "Genérico",  cat: "Descartable",       stock: "ok"  },
-  { nombre: "Gasa estéril 10x10 x 10 unid",      lab: "Furey",  cat: "Descartable",       stock: "low" },
-  { nombre: "Glucómetro Accu-Chek",              lab: "Roche",     cat: "Producto Estrella", stock: "ok"  },
-  { nombre: "Tensiometro Aneroide Con Estetoscopio Adulto",        lab: "Euromix",     cat: "Producto Estrella", stock: "ok"  },
-  { nombre: "Ibuprofeno 600mg x 20 ",    lab: "Savant",  cat: "Ofertas",           stock: "ok"  },
-  { nombre: "Paracetamol Infantil susp. 120ml",   lab: "Savant",     cat: "Medicamento",           stock: "ok"  },
-  { nombre: "Vitamina D3 Colecalciferol 2,5 Mg, Solucion Oral Gotas X 2 Ml",        lab: "Domingez",     cat: "Ofertas",           stock: "low" },
-  { nombre: "Acetilsalicilico Acido 100 Mg, Comprimido",        lab: "VENT3",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Enalapril 10 Mg, Comprimido",        lab: "Lazar",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Dexametasona 0,5 Mg, Comprimido",        lab: "Duncan",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Atenolol 50 Mg, Comprimido",        lab: "Lazar",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Tobramicina 3mg/ml+ Dexametasona 1Mg/ml suspencion oftalmica x5ml",        lab: "Klonal",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Digoxina 0,25Mg/ml inyectable 1ml",        lab: "Biol",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Diclofenac Sodico100 Mg, capsula, Comprimido",        lab: "Biotenk",     cat: "Medicamento",           stock: "low" },
-  { nombre: "Hidrocortisona 100mg, inyectable",        lab: "Drawer",     cat: "Oferta",           stock: "low" },
-  { nombre: "Hidrocortisona 500mg, inyectable",        lab: "Drawer",     cat: "Oferta",           stock: "low" },
-  { nombre: "Piper 4000mg+Tazo 500mg, inyectable",        lab: "klonal",     cat: "Oferta",           stock: "low" },
-  { nombre: "Furosemida inyect x2ml ev",        lab: "Klonal",     cat: "Oferta",           stock: "low" },
+  { codigo:'006243', nombre:'ACICLOVIR 200 MG, COMPRIMIDO',       nc:'XICLOVIR 200',        cat:'Comp/Cáps',           lab:'Lazar',    costo:381.26,   stock:'ok'  },
+  { codigo:'006245', nombre:'ACICLOVIR 5% UNGUENTO x 5 GR',       nc:'XICLOVIR 5%',         cat:'Cremas/Unguentos',    lab:'Lazar',    costo:3818.60,  stock:'ok'  },
+  { codigo:'354190', nombre:'ACICLOVIR 8% SUSP x 120 ML',         nc:'XICLOVIR',            cat:'Jarabes/Susp',        lab:'Lazar',    costo:10709.49, stock:'low' },
+  { codigo:'006244', nombre:'ACICLOVIR 800 MG, COMPRIMIDO',       nc:'XICLOVIR 800',        cat:'Comp/Cáps',           lab:'Lazar',    costo:801.04,   stock:'ok'  },
+  { codigo:'006246', nombre:'ALLOPURINOL 300 MG, COMPRIMIDO',     nc:'ALFADIMAN',           cat:'Comp/Cáps',           lab:'Lazar',    costo:181.36,   stock:'ok'  },
+  { codigo:'006247', nombre:'AMLODIPINA 10 MG, COMPRIMIDO',       nc:'TERVALON 10',         cat:'Comp/Cáps',           lab:'Lazar',    costo:229.41,   stock:'ok'  },
+  { codigo:'006248', nombre:'AMLODIPINA 5 MG, COMPRIMIDO',        nc:'TERVALON 5',          cat:'Comp/Cáps',           lab:'Lazar',    costo:120.89,   stock:'ok'  },
+  { codigo:'006250', nombre:'ATENOLOL 50 MG, COMPRIMIDO',         nc:'VERICORDIN 50',       cat:'Comp/Cáps',           lab:'Lazar',    costo:123.55,   stock:'ok'  },
+  { codigo:'354155', nombre:'CETIRIZINA 10 MG/ML SOLUC x 10 ML',  nc:'CETIZINE',            cat:'Gotas/Sol Oftálmica', lab:'Lazar',    costo:3510.17,  stock:'ok'  },
+  { codigo:'006251', nombre:'CIPROFLOXACINA 500 MG, COMPRIMIDO',  nc:'CIPROFLOXACINA LAZAR',cat:'Comp/Cáps',           lab:'Lazar',    costo:383.46,   stock:'ok'  },
+  { codigo:'006253', nombre:'DIPIRONA 500 MG, COMPRIMIDO',        nc:'NOVEMINA',            cat:'Comp/Cáps',           lab:'Lazar',    costo:220.29,   stock:'ok'  },
+  { codigo:'006255', nombre:'DOMPERIDONA 10 MG, COMPRIMIDO',      nc:'ECUAMON',             cat:'Comp/Cáps',           lab:'Lazar',    costo:124.84,   stock:'ok'  },
+  { codigo:'006254', nombre:'DOMPERIDONA 10 MG/ML SUSP x 20 ML',  nc:'ECUAMON',             cat:'Jarabes/Susp',        lab:'Lazar',    costo:3232.81,  stock:'ok'  },
+  { codigo:'006256', nombre:'ENALAPRIL 10 MG, COMPRIMIDO',        nc:'ECAPRILAT 10',        cat:'Comp/Cáps',           lab:'Lazar',    costo:85.45,    stock:'ok'  },
+  { codigo:'006257', nombre:'ENALAPRIL 20 MG, COMPRIMIDO',        nc:'ECAPRILAT 20',        cat:'Comp/Cáps',           lab:'Lazar',    costo:109.64,   stock:'ok'  },
+  { codigo:'006259', nombre:'FAMOTIDINA 20 MG, COMPRIMIDO',       nc:'LAZARTIDINA 20',      cat:'Comp/Cáps',           lab:'Lazar',    costo:60.24,    stock:'ok'  },
+  { codigo:'006260', nombre:'FAMOTIDINA 40 MG, COMPRIMIDO',       nc:'LAZARTIDINA 40',      cat:'Comp/Cáps',           lab:'Lazar',    costo:81.11,    stock:'ok'  },
+  { codigo:'006261', nombre:'GLIMEPIRIDE 2 MG, COMPRIMIDO',       nc:'ADIUVAN 2 MG',        cat:'Comp/Cáps',           lab:'Lazar',    costo:88.09,    stock:'ok'  },
+  { codigo:'354143', nombre:'GLIMEPIRIDE 4 MG, COMPRIMIDO',       nc:'ADIUVAN 4 MG',        cat:'Comp/Cáps',           lab:'Lazar',    costo:152.43,   stock:'ok'  },
+  { codigo:'006262', nombre:'HOMATROPINA 0,2% GOTAS x 22 ML',     nc:'PARATROPINA',         cat:'Jarabes/Susp',        lab:'Lazar',    costo:3306.80,  stock:'low' },
+  { codigo:'354709', nombre:'HOMATROPINA 4 MG, COMPRIMIDO',       nc:'PARATROPINA COMP',    cat:'Comp/Cáps',           lab:'Lazar',    costo:111.42,   stock:'ok'  },
+  { codigo:'006264', nombre:'IBUPROFENO 400 MG, COMPRIMIDO',      nc:'IBUMULTIN 400',       cat:'Comp/Cáps',           lab:'Lazar',    costo:43.94,    stock:'ok'  },
+  { codigo:'006265', nombre:'IBUPROFENO 600 MG, COMPRIMIDO',      nc:'IBUMULTIN 600',       cat:'Comp/Cáps',           lab:'Lazar',    costo:64.20,    stock:'ok'  },
+  { codigo:'006266', nombre:'LACTULOSA 650 MG/ML JARABE x 120 ML',nc:'LACTULON',            cat:'Jarabes/Susp',        lab:'Lazar',    costo:8185.62,  stock:'ok'  },
+  { codigo:'006267', nombre:'METFORMINA 500 MG, COMPRIMIDO',      nc:'MEDOBIS 500',         cat:'Comp/Cáps',           lab:'Lazar',    costo:78.50,    stock:'ok'  },
+  { codigo:'006268', nombre:'METFORMINA 850 MG, COMPRIMIDO',      nc:'MEDOBIS 850',         cat:'Comp/Cáps',           lab:'Lazar',    costo:159.70,   stock:'ok'  },
+  { codigo:'006269', nombre:'NORFLOXACINA 400 MG, COMPRIMIDO',    nc:'UROXACIN',            cat:'Comp/Cáps',           lab:'Lazar',    costo:283.54,   stock:'ok'  },
+  { codigo:'',       nombre:'ACETILCISTEINA 2% POLVO x 100 ML',   nc:'TEMPOTANE SUSP',      cat:'Jarabes/Susp',        lab:'Lazar',    costo:6828.57,  stock:'ok'  },
+  // ── Productos de ejemplo extra para demostrar el catálogo ──
+  { codigo:'21033',  nombre:'IBUPROFENO 400 MG, COMPRIMIDO',      nc:'IBUMULTIN 400',       cat:'Comp/Cáps',           lab:'Roemmers', costo:52.00,    stock:'ok'  },
+  { codigo:'21030',  nombre:'PARACETAMOL 500 MG, COMPRIMIDO',     nc:'TAFIROL 500',         cat:'Comp/Cáps',           lab:'Roemmers', costo:48.00,    stock:'ok'  },
+  { codigo:'21029',  nombre:'AMOXICILINA 500 MG, CÁPSULA',        nc:'AMOXIDAL 500',        cat:'Comp/Cáps',           lab:'Roemmers', costo:280.00,   stock:'low' },
+  { codigo:'21027',  nombre:'OMEPRAZOL 20 MG, CÁPSULA',           nc:'ULCOZOL',             cat:'Comp/Cáps',           lab:'Bernabó',  costo:95.00,    stock:'ok'  },
+  { codigo:'354733', nombre:'LORATADINA 10 MG, COMPRIMIDO',       nc:'CLARITYNE',           cat:'Comp/Cáps',           lab:'Bayer',    costo:110.00,   stock:'ok'  },
+  { codigo:'90283',  nombre:'JERINGA DESCARTABLE 5ML',             nc:'',                    cat:'Descartable',         lab:'Nipro',    costo:150.00,   stock:'ok'  },
+  { codigo:'90284',  nombre:'JERINGA DESCARTABLE 10ML',            nc:'',                    cat:'Descartable',         lab:'Nipro',    costo:185.00,   stock:'ok'  },
+  { codigo:'90285',  nombre:'GUANTES DE LÁTEX TALLE M x100',       nc:'',                    cat:'Descartable',         lab:'Medline',  costo:3800.00,  stock:'ok'  },
 ];
 
+/* Multiplicadores por lista */
+const LISTAS = [
+  { n:1, mult:1.20 },
+  { n:2, mult:1.25 },
+  { n:3, mult:1.30 },
+  { n:4, mult:1.35 },
+  { n:5, mult:1.40 },
+];
 
-/* ============================================================
-   MAPAS PARA BADGES
-============================================================ */
-const catClass = {
-  "Medicamentos":      "med",
-  "Descartable":       "desc",
-  "Ofertas":           "ofer",
-  "Producto Estrella": "est",
-};
+const STOCK_LABEL = { ok:'En stock', low:'Poco stock', out:'Sin stock' };
+const STOCK_CLASS = { ok:'stock-ok', low:'stock-low', out:'stock-out' };
 
-const stockLabel = { ok: "En stock", low: "Poco stock", out: "Sin stock" };
-
-/* ============================================================
-   POBLAR FILTRO DE LABORATORIOS
-============================================================ */
-function poblarFiltroLabs() {
-  const sel = document.getElementById("laboratorio");
-  const labs = [...new Set(productos.map(p => p.lab))].sort();
-  // Limpiar opciones excepto la primera
-  while (sel.options.length > 1) sel.remove(1);
-  labs.forEach(l => {
-    const o = document.createElement("option");
-    o.value = l;
-    o.textContent = l;
-    sel.appendChild(o);
-  });
+function fmt(n) {
+  return '$ ' + n.toFixed(2)
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    .replace('.', '#').replace(',', '.').replace('#', ',');
 }
 
-/* ============================================================
-   RENDERIZAR CARD
-============================================================ */
-function renderCard(p) {
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `
-    <div class="card-top">
-      <span class="badge-cat ${catClass[p.cat] || ''}">${p.cat}</span>
-      <span class="badge-stock ${p.stock}">${stockLabel[p.stock] || p.stock}</span>
-    </div>
-    <div class="card-nombre">${p.nombre}</div>
-    <div class="card-lab">${p.lab}</div>
-  `;
-  return div;
+/* ── Poblar filtros desplegables ─────────────────────────────── */
+function poblarFiltros() {
+  const cats = [...new Set(productos.map(p => p.cat))].sort();
+  const labs = [...new Set(productos.map(p => p.lab))].filter(Boolean).sort();
+
+  const selCat = document.getElementById('categoria');
+  const selLab = document.getElementById('laboratorio');
+
+  while (selCat.options.length > 1) selCat.remove(1);
+  while (selLab.options.length > 1) selLab.remove(1);
+
+  cats.forEach(c => { const o = new Option(c,c); selCat.add(o); });
+  labs.forEach(l => { const o = new Option(l,l); selLab.add(o); });
 }
 
-/* ============================================================
-   FILTRAR Y RENDERIZAR
-============================================================ */
+/* ── Renderizar tabla ────────────────────────────────────────── */
 function filtrar() {
-  const q         = document.getElementById("buscar").value.toLowerCase().trim();
-  const cat       = document.getElementById("categoria").value;
-  const lab       = document.getElementById("laboratorio").value;
-  const orden     = document.getElementById("ordenar").value;
-  const soloStock = document.getElementById("soloStock").checked;
+  const q         = document.getElementById('buscar').value.toLowerCase().trim();
+  const cat       = document.getElementById('categoria').value;
+  const lab       = document.getElementById('laboratorio').value;
+  const soloStock = document.getElementById('soloStock').checked;
 
   let lista = productos.filter(p => {
-    if (soloStock && p.stock === "out") return false;
-    if (q && !p.nombre.toLowerCase().includes(q) && !p.lab.toLowerCase().includes(q)) return false;
+    if (soloStock && p.stock === 'out') return false;
     if (cat && p.cat !== cat) return false;
     if (lab && p.lab !== lab) return false;
+    if (q) {
+      const haystack = `${p.codigo} ${p.nombre} ${p.nc} ${p.lab}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
     return true;
   });
 
-  if (orden === "az") lista.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
-  else if (orden === "za") lista.sort((a, b) => b.nombre.localeCompare(a.nombre, "es"));
-
-  document.getElementById("contador").textContent = lista.length;
-
-  const grilla = document.getElementById("grilla");
-  grilla.innerHTML = "";
+  document.getElementById('contador').textContent = lista.length;
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
 
   if (lista.length === 0) {
-    grilla.innerHTML = `
-      <div class="empty">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-        </svg>
-        <p>No se encontraron productos</p>
-        <small>Probá con otros términos o limpiá los filtros</small>
-      </div>`;
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="10">
+      <p>No se encontraron productos</p>
+      <small>Probá con otros términos o limpiá los filtros</small>
+    </td></tr>`;
     return;
   }
 
-  lista.forEach(p => grilla.appendChild(renderCard(p)));
+  lista.forEach(p => {
+    const tr = document.createElement('tr');
+    const precios = LISTAS.map((l, i) =>
+      `<td class="td-precio l${l.n}">${fmt(p.costo * l.mult)}</td>`
+    ).join('');
+
+    tr.innerHTML = `
+      <td class="td-cod">${p.codigo || '—'}</td>
+      <td class="td-nombre">
+        ${p.nombre}
+        ${p.nc ? `<small>${p.nc}</small>` : ''}
+      </td>
+      <td class="td-cat"><span>${p.cat}</span></td>
+      <td style="font-size:13px;color:var(--muted)">${p.lab}</td>
+      <td class="td-stock"><span class="${STOCK_CLASS[p.stock]}">${STOCK_LABEL[p.stock]}</span></td>
+      ${precios}
+    `;
+    tbody.appendChild(tr);
+  });
 }
 
-/* ============================================================
-   LIMPIAR FILTROS
-============================================================ */
+/* ── Limpiar filtros ─────────────────────────────────────────── */
 function limpiarFiltros() {
-  document.getElementById("buscar").value       = "";
-  document.getElementById("categoria").value    = "";
-  document.getElementById("laboratorio").value  = "";
-  document.getElementById("ordenar").value      = "";
-  document.getElementById("soloStock").checked  = true;
+  document.getElementById('buscar').value      = '';
+  document.getElementById('categoria').value   = '';
+  document.getElementById('laboratorio').value = '';
+  document.getElementById('soloStock').checked = true;
   filtrar();
 }
 
-/* ============================================================
-   SKELETONS (para cuando cargue la API)
-============================================================ */
-function mostrarSkeletons(n = 12) {
-  const grilla = document.getElementById("grilla");
-  grilla.innerHTML = "";
-  for (let i = 0; i < n; i++) {
-    grilla.innerHTML += `
-      <div class="card-skeleton">
-        <div class="skeleton" style="height:20px; width:60%;"></div>
-        <div class="skeleton" style="height:14px; width:90%; margin-top:4px;"></div>
-        <div class="skeleton" style="height:14px; width:75%;"></div>
-        <div class="skeleton" style="height:12px; width:40%;"></div>
-      </div>`;
-  }
-}
-
-/* ============================================================
-   CARGA INICIAL
-============================================================ */
+/* ── Carga inicial ───────────────────────────────────────────── */
 function cargarProductos() {
-  // -------------------------------------------------------
-  // CUANDO TENGAS LA API, reemplazá este bloque por:
-  //
-  // mostrarSkeletons();
-  // fetch('https://tu-api.com/productos')
-  //   .then(r => r.json())
-  //   .then(data => {
-  //     productos = data.map(p => ({
-  //       nombre: p.descripcion,
-  //       lab:    p.laboratorio,
-  //       cat:    p.categoria,
-  //       stock:  p.stock > 10 ? 'ok' : p.stock > 0 ? 'low' : 'out',
-  //     }));
-  //     poblarFiltroLabs();
-  //     filtrar();
-  //   });
-  // -------------------------------------------------------
-  poblarFiltroLabs();
+  /* -------------------------------------------------------
+     REEMPLAZÁ ESTE BLOQUE CUANDO TENGAS LA API:
+
+     mostrarSkeletons();
+     fetch('https://tu-api.com/productos')
+       .then(r => r.json())
+       .then(data => {
+         productos = data.map(p => ({
+           codigo: p.codigo,
+           nombre: p.descripcion,
+           nc:     p.nombre_comercial || '',
+           cat:    p.categoria,
+           lab:    p.laboratorio,
+           costo:  parseFloat(p.costo),
+           stock:  p.stock > 10 ? 'ok' : p.stock > 0 ? 'low' : 'out',
+         }));
+         poblarFiltros();
+         filtrar();
+       });
+  ------------------------------------------------------- */
+  poblarFiltros();
   filtrar();
 }
 

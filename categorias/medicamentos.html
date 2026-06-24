@@ -2,12 +2,62 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Medicamentos - Catálogo Trade Farma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Trade Farma</title>
+  <link rel="icon" type="image/x-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    body { margin:0; font-family: Arial; background:#f5f5f5; }
-    h1 { background:#1976d2; color:white; padding:15px; text-align:center; }
-    iframe { width:100%; height:90vh; border:none; }
-    .back {
+    /* ============================================================
+       VARIABLES Y RESET
+    ============================================================ */
+    :root {
+      --azul:        #0b2a6f;
+      --azul-light:  #e6f1fb;
+      --azul-mid:    #378add;
+      --verde-bg:    #eaf3de;
+      --verde-txt:   #27500a;
+      --naranja-bg:  #faeeda;
+      --naranja-txt: #633806;
+      --rojo-bg:     #fcebeb;
+      --rojo-txt:    #791f1f;
+      --bg-page:     #f0f4fa;
+      --bg-card:     #ffffff;
+      --border:      rgba(0,0,0,0.09);
+      --text-primary:#1a1a2e;
+      --text-muted:  #6b7280;
+      --font:        'DM Sans', sans-serif;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      background: var(--azul);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(11,42,111,0.25);
+    }
+    .bac {
   display: inline-block;
   margin: 12px;
   padding: 8px 14px;
@@ -18,113 +68,734 @@
   font-size: 14px;
   font-weight: bold;
 }
-.back:hover {
+.bac:hover {
   background: #143c9c;
 }
-.contenedor {
+
+    .header-logo {
       display: flex;
-      justify-content: center;
-      padding: 10px;
-    }
-
-    iframe {
-      width: 95%;
-      max-width: 1200px;
-      height: 85vh;
-      border: none;
-      background: white;
-    }
-
-
-  </style>
-  
-</head>
-<script>
-  function printSheet() {
-    const iframe = document.querySelector("iframe");
-    iframe.contentWindow.focus();
-    iframe.contentWindow.print();
-  }
-</script>
-
-<body>
-<a href="/index.html" class="back">← Volver al catálogo</a>
-<h1>Comprimidos, ampollas y orales</h1>
-
-<div class="contenedor">
-<iframe 
-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=0&single=true&widget=true&headers=false">
-</iframe>
-</div>
-<div style="text-align:center; margin: 10px;">
-  <a 
-    href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS-QCdXjkLS41bVnRB4c7UcPyX9GsuH1_pwwbzGs6Sbrg5eRKGkt9goXDiMZ1XJSmOZVGjOLcXrMpsP/pubhtml?gid=0&single=true&widget=true&headers=false&print=true"
-    target="_blank"
-    style="
-      display: inline-block;
-      padding: 10px 16px;
-      background: #1976d2;
-      color: white;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: bold;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-    "
-  >
-    🖨️ Imprimir catálogo
+    }
+
+    .header-logo img {
+      height: 36px;
+      filter: brightness(0) invert(1);
+    }
+
+    .header-logo-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .header-logo-text span { color: #f37b2c; }
+
+    .header-badge {
+      font-size: 12px;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.85);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      letter-spacing: 0.2px;
+    }
+
+    /* ============================================================
+       HERO / TÍTULO
+    ============================================================ */
+    .hero {
+      background: var(--azul);
+      padding: 32px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 32px;
+      background: var(--bg-page);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ============================================================
+       CONTENEDOR PRINCIPAL
+    ============================================================ */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ============================================================
+       PANEL DE FILTROS
+    ============================================================ */
+    .filtros-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-top: -20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filtros-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .input-buscar {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      font-family: var(--font);
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: #f8fafc;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+
+    .input-buscar:focus {
+      border-color: var(--azul-mid);
+      box-shadow: 0 0 0 3px rgba(55,138,221,0.15);
+      background: #fff;
+    }
+
+    .buscar-wrap {
+      position: relative;
+      grid-column: 1 / -1;
+    }
+
+    .buscar-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: var(--font);
+      font-size: 13px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: #f8fafc;
+      color: var(--text-primary);
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+      transition: border-color 0.15s;
+    }
+
+    select:focus { border-color: var(--azul-mid); outline: none; }
+
+    .filtros-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+
+    .stock-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .stock-toggle input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--azul);
+      cursor: pointer;
+    }
+
+    .btn-limpiar {
+      font-family: var(--font);
+      font-size: 12px;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-limpiar:hover {
+      border-color: var(--azul-mid);
+      color: var(--azul);
+      background: var(--azul-light);
+    }
+
+    /* ============================================================
+       BARRA DE RESULTADOS
+    ============================================================ */
+    .resultados-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .resultados-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .resultados-count strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       GRILLA DE PRODUCTOS
+    ============================================================ */
+    .grilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    /* ============================================================
+       CARD DE PRODUCTO
+    ============================================================ */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+      cursor: default;
+    }
+
+    .card:hover {
+      border-color: var(--azul-mid);
+      box-shadow: 0 4px 16px rgba(11,42,111,0.10);
+      transform: translateY(-1px);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .badge-cat {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-cat.med   { background: var(--azul-light); color: var(--azul); }
+    .badge-cat.desc  { background: #e1f5ee; color: #085041; }
+    .badge-cat.ofer  { background: var(--naranja-bg); color: var(--naranja-txt); }
+    .badge-cat.est   { background: #fbeaf0; color: #72243e; }
+
+    .badge-stock {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-stock.ok   { background: var(--verde-bg); color: var(--verde-txt); }
+    .badge-stock.low  { background: var(--naranja-bg); color: var(--naranja-txt); }
+    .badge-stock.out  { background: var(--rojo-bg); color: var(--rojo-txt); }
+
+    .card-nombre {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card-lab {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-lab::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* ============================================================
+       ESTADO VACÍO
+    ============================================================ */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty svg { opacity: 0.25; margin-bottom: 12px; }
+    .empty p { font-size: 15px; }
+    .empty small { font-size: 13px; opacity: 0.7; }
+
+    /* ============================================================
+       SKELETON LOADER (mientras carga la API)
+    ============================================================ */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f4fa 25%, #e4eaf5 50%, #f0f4fa 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: var(--radius-sm);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .card-skeleton {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--azul);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+    }
+
+    .footer-link {
+      color: #6eb3f7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      background: #25D366;
+      color: #fff;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: opacity 0.15s;
+    }
+
+    .footer-wa:hover { opacity: 0.88; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 640px) {
+      .filtros-row { grid-template-columns: 1fr 1fr; }
+      header { padding: 0 16px; }
+      .hero h1 { font-size: 20px; }
+      .main { padding: 0 12px 40px; }
+    }
+
+    @media (max-width: 420px) {
+      .filtros-row { grid-template-columns: 1fr; }
+      .header-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a href="/index.html" class="bac">← Volver al catálogo</a>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header>
+  <a href="index.html" class="header-logo">
+    <!-- Si tenés logo.png descomentá la línea siguiente y borrá el texto -->
+    <!-- <img src="logo.png" alt="Trade Farma"> -->
+    <span class="header-logo-text">Trade<span>Farma</span></span>
   </a>
+  <span class="header-badge">Catálogo de productos</span>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<div class="hero">
+  <h1>Catálogo de Productos</h1>
+  <p>Consultá disponibilidad de stock en tiempo real</p>
 </div>
 
+<!-- ============================================================
+     CONTENIDO PRINCIPAL
+============================================================ -->
+<div class="main">
 
+  <!-- FILTROS -->
+  <div class="filtros-panel">
+    <div class="buscar-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input
+        class="input-buscar"
+        type="text"
+        id="buscar"
+        placeholder="Buscar por nombre de producto..."
+        oninput="filtrar()"
+        autocomplete="off"
+      >
+    </div>
 
+    <div class="filtros-row">
+  <select id="categoria" onchange="filtrar()">
+    <option value="">Todas las categorías</option>
+  </select>
 
-<div style="
-  max-width: 420px;
-  padding: 16px 18px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #fafafa;
-">
+  <select id="laboratorio" onchange="filtrar()">
+    <option value="">Todos los laboratorios</option>
+  </select>
 
-  <strong style="font-size: 16px; color:#1f2937;">
-    Trade Farma – Droguería
-  </strong><br>
+  <select id="ordenar" onchange="filtrar()">
+    <option value="">Ordenar por...</option>
+    <option value="az">Nombre A → Z</option>
+    <option value="za">Nombre Z → A</option>
+  </select>
+</div>
 
-  <span style="font-size: 13px; color:#4b5563;">
-    🌐 <a href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank" style="color:#2563eb; text-decoration:none;">
+    <div class="filtros-bottom">
+      <label class="stock-toggle">
+        <input type="checkbox" id="soloStock" onchange="filtrar()" checked>
+        Mostrar solo productos con stock
+      </label>
+      <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar filtros</button>
+    </div>
+  </div>
+
+  <!-- BARRA DE RESULTADOS -->
+  <div class="resultados-bar">
+    <span class="resultados-count">Mostrando <strong id="contador">0</strong> productos</span>
+  </div>
+
+  <!-- GRILLA -->
+  <div class="grilla" id="grilla">
+    <!-- Los productos se insertan acá por JS -->
+  </div>
+
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <p>
+    ¿Te interesa adquirir nuestros productos? Creá tu usuario en
+    <a class="footer-link" href="https://mateinformatica.com.ar/tradefarma/public/" target="_blank">
       www.tradefarma.com.ar
     </a>
-  </span>
-
-  <p style="font-size: 14px; color:#374151; margin-top: 12px; line-height: 1.5;">
-    En caso de requerir algún producto que no se encuentre incluido en el presente catálogo,
-    lo invitamos a consultarnos. Con gusto podremos enviarle la correspondiente cotización.
   </p>
-
-  <a href="https://wa.me/5493512444832" target="_blank"
-     style="
-       display: inline-flex;
-       align-items: center;
-       gap: 8px;
-       padding: 10px 14px;
-       background-color: #25D366;
-       color: #ffffff;
-       border-radius: 6px;
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 14px;
-     ">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="WhatsApp"
-         style="width:18px;">
+  <a class="footer-wa" href="https://wa.me/5493512444832" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="16" alt="WhatsApp">
     Contacto por WhatsApp
   </a>
+</footer>
 
-</div>
+<script>
+/* ============================================================
+   CONEXIÓN INTELIGENTE CON GOOGLE SHEETS
+============================================================ */
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1dy3rhevvDtofp4-ocSpL6jDivnEZHrV6sTwKAyoFKSw/export?format=csv&gid=373072051';
 
+let productos = [];
 
+/* ============================================================
+   MAPAS PARA BADGES
+============================================================ */
+const catClass = {
+  "medicamentos":      "med",
+  "descartable":       "desc",
+  "ofertas":           "ofer",
+  "producto estrella": "est",
+};
 
+const stockLabel = { ok: "En stock", low: "Poco stock", out: "Sin stock" };
 
+/* ============================================================
+   POBLAR FILTROS DESPLEGABLES
+============================================================ */
+function poblarFiltrosDesplegables() {
+  // 1. Poblar Categorías
+  const selCat = document.getElementById("categoria");
+  const categoriasUnicas = [...new Set(productos.map(p => p.catOriginal))].filter(Boolean).sort();
+  
+  while (selCat.options.length > 1) selCat.remove(1);
+  categoriasUnicas.forEach(c => {
+    const o = document.createElement("option");
+    o.value = c;
+    o.textContent = c;
+    selCat.appendChild(o);
+  });
+
+  // 2. Poblar Laboratorios / Marcas
+  const selLab = document.getElementById("laboratorio");
+  const labsUnicos = [...new Set(productos.map(p => p.lab))].filter(Boolean).sort();
+  
+  while (selLab.options.length > 1) selLab.remove(1);
+  labsUnicos.forEach(l => {
+    const o = document.createElement("option");
+    o.value = l;
+    o.textContent = l;
+    selLab.appendChild(o);
+  });
+}
+
+/* ============================================================
+   RENDERIZAR CARD
+============================================================ */
+function renderCard(p) {
+  const div = document.createElement("div");
+  div.className = "card";
+  const claseBadge = catClass[p.catOriginal.toLowerCase().trim()] || 'med';
+  
+  div.innerHTML = `
+    <div class="card-top" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px;">
+      <span class="card-nombre" style="font-size: 13px; font-weight: 600; line-height: 1.4; color: #1a1a2e;">${p.nombre}</span>
+      <span class="badge-stock ${p.stock}" style="margin-left: auto; white-space: nowrap;">${stockLabel[p.stock] || p.stock}</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 6px;">
+      <div class="card-lab" style="font-size: 12px; font-weight: 500; color: #6b7280;">${p.lab}</div>
+      ${p.catOriginal ? `<span class="badge-cat ${claseBadge}" style="font-size: 10px; font-weight: 600;">${p.catOriginal}</span>` : ''}
+    </div>
+  `;
+  return div;
+}
+
+/* ============================================================
+   FILTRAR Y RENDERIZAR
+============================================================ */
+function filtrar() {
+  const q         = document.getElementById("buscar").value.toLowerCase().trim();
+  const cat       = document.getElementById("categoria").value.trim();
+  const lab       = document.getElementById("laboratorio").value;
+  const orden     = document.getElementById("ordenar").value;
+  const soloStock = document.getElementById("soloStock").checked;
+
+  let lista = productos.filter(p => {
+    if (soloStock && p.stock === "out") return false;
+    if (q && !p.nombre.toLowerCase().includes(q) && !p.lab.toLowerCase().includes(q)) return false;
+    if (cat && p.catOriginal !== cat) return false;
+    if (lab && p.lab !== lab) return false;
+    return true;
+  });
+
+  if (orden === "az") lista.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+  else if (orden === "za") lista.sort((a, b) => b.nombre.localeCompare(a.nombre, "es"));
+
+  document.getElementById("contador").textContent = lista.length;
+
+  const grilla = document.getElementById("grilla");
+  grilla.innerHTML = "";
+
+  if (lista.length === 0) {
+    grilla.innerHTML = `
+      <div class="empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <p>No se encontraron productos</p>
+        <small>Probá con otros términos o limpiá los filtros</small>
+      </div>`;
+    return;
+  }
+
+  lista.forEach(p => grilla.appendChild(renderCard(p)));
+}
+
+/* ============================================================
+   LIMPIAR FILTROS
+============================================================ */
+function limpiarFiltros() {
+  document.getElementById("buscar").value       = "";
+  document.getElementById("categoria").value    = "";
+  document.getElementById("laboratorio").value  = "";
+  document.getElementById("ordenar").value      = "";
+  document.getElementById("soloStock").checked  = true;
+  filtrar();
+}
+
+/* ============================================================
+   SKELETONS LOADER
+============================================================ */
+function mostrarSkeletons(n = 12) {
+  const grilla = document.getElementById("grilla");
+  grilla.innerHTML = "";
+  for (let i = 0; i < n; i++) {
+    grilla.innerHTML += `
+      <div class="card-skeleton">
+        <div class="skeleton" style="height:20px; width:85%;"></div>
+        <div class="skeleton" style="height:14px; width:45%; margin-top:8px;"></div>
+      </div>`;
+  }
+}
+
+/* ============================================================
+   PARSER DE CSV ROBUSTO INTELIGENTE
+============================================================ */
+function parseCSV(text) {
+  const lines = text.split(/\r?\n/);
+  return lines.map(line => {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  }).filter(line => line.length > 0 && line.some(cell => cell !== ""));
+}
+
+/* ============================================================
+   CARGA DESDE GOOGLE SHEETS
+============================================================ */
+async function cargarProductos() {
+  mostrarSkeletons();
+  try {
+    const response = await fetch(SHEET_URL);
+    if (!response.ok) throw new Error('No se pudo conectar con Google Sheets');
+    
+    const csvText = await response.text();
+    const filas = parseCSV(csvText);
+
+    if (filas.length === 0) throw new Error('La hoja está vacía');
+
+    // Analizamos los encabezados reales de tu Google Sheets (Fila 0)
+    const encabezados = filas[0].map(h => h.replace(/^"|"$/g, '').trim().toLowerCase());
+    
+    // Buscamos dinámicamente en qué posición está cada columna
+    const idxProducto = encabezados.findIndex(h => h.includes('producto') || h.includes('descripc'));
+    const idxStock    = encabezados.findIndex(h => h.includes('stock') || h.includes('cant'));
+    const idxCat      = encabezados.findIndex(h => h === 'categoria' || h === 'categoría');
+    const idxLab      = encabezados.findIndex(h => h.includes('laboratorio') || h.includes('marca'));
+
+    // Si no encuentra los índices por nombre, usamos valores por defecto seguros
+    const pIdx = idxProducto !== -1 ? idxProducto : 1;
+    const sIdx = idxStock !== -1 ? idxStock : 2;
+    const cIdx = idxCat !== -1 ? idxCat : 9;
+    const lIdx = idxLab !== -1 ? idxLab : 10;
+
+    productos = filas.slice(1).map(fila => {
+      if (!fila[pIdx]) return null;
+
+      const nombreProducto = fila[pIdx].replace(/^"|"$/g, '').trim();
+      const stockValor     = fila[sIdx] ? fila[sIdx].replace(/^"|"$/g, '').trim().toLowerCase() : '0';
+      const categoria      = fila[cIdx] ? fila[cIdx].replace(/^"|"$/g, '').trim() : 'Sin Categoría';
+      const laboratorio    = fila[lIdx] ? fila[lIdx].replace(/^"|"$/g, '').trim() : 'Sin Marca';
+
+      // Evitar procesar cabeceras duplicadas
+      if (nombreProducto.toLowerCase() === "producto" || nombreProducto === "") return null;
+
+      // Calcular el estado del stock
+      let estadoStock = 'out';
+      if (stockValor === 'ok' || stockValor === 'en stock' || parseInt(stockValor) > 10) {
+        estadoStock = 'ok';
+      } else if (stockValor === 'low' || stockValor === 'poco stock' || (parseInt(stockValor) <= 10 && parseInt(stockValor) > 0)) {
+        estadoStock = 'low';
+      }
+
+      return {
+        nombre: nombreProducto,
+        lab: laboratorio || 'Otras Marcas',
+        catOriginal: categoria || 'General',
+        stock: estadoStock
+      };
+    }).filter(Boolean);
+
+    poblarFiltrosDesplegables();
+    filtrar();
+
+  } catch (error) {
+    console.error('Error general en el catálogo:', error);
+    document.getElementById("grilla").innerHTML = `
+      <div class="empty">
+        <p>Hubo un inconveniente al actualizar el stock en vivo.</p>
+        <small>Por favor, asegúrate de que el documento esté compartido de forma pública.</small>
+      </div>`;
+  }
+}
+
+// Activar la carga al iniciar
+cargarProductos();
+</script>
 </body>
 </html>
