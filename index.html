@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <title>Catálogo Trade Farma</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="logo.png">
+  <link rel="icon" type="image/x-icon" href="logo.png">
   <style>
+    :root {
+      --azul: #0b2a6f;
+      --naranja: #ff5f01;
+      --fondo: #f5f7fa;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background: #f5f7fa;
+      background: var(--fondo);
       margin: 0;
       padding: 0;
+      color: #333;
     }
 
     header {
@@ -29,19 +36,36 @@
       text-align: center;
       margin: 25px 0 15px;
       font-size: 24px;
+      color: var(--azul);
     }
 
-  .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
-  gap: 15px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 30px;
-  justify-content: center;
-}
+    /* ===== Banner principal ===== */
+    .banner-wrap {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    .banner-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    @media (max-width: 1240px) {
+      .banner-wrap { margin: 15px 15px 0; }
+    }
 
-    
+    /* ===== Botones del catálogo ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
+      gap: 15px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 30px;
+      justify-content: center;
+    }
 
     .cat {
       background: white;
@@ -55,16 +79,233 @@
       font-weight: bold;
       transition: 0.2s;
     }
-    
 
     .cat:hover {
-      background: #0b2a6f;
+      background: var(--azul);
       color: white;
     }
 
+    /* ===== Secciones de abajo ===== */
+    .seccion {
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
+
+    .titulo-seccion {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 22px;
+      font-size: 22px;
+      color: var(--azul);
+      text-align: center;
+    }
+    .titulo-seccion::before,
+    .titulo-seccion::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: var(--naranja);
+    }
+
+    /* Beneficios */
+    .beneficios {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 28px 10px;
+    }
+    .beneficio {
+      text-align: center;
+      padding: 6px 18px;
+      border-left: 1px solid #e3e6ee;
+    }
+    .beneficio:first-child { border-left: none; }
+    .beneficio .icono {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: var(--naranja);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .beneficio .icono svg { width: 32px; height: 32px; }
+    .beneficio h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: var(--azul);
+    }
+    .beneficio p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #555;
+    }
+
+    @media (max-width: 760px) {
+      .beneficios { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+      .beneficio:nth-child(3) { border-left: none; }
+    }
+    @media (max-width: 420px) {
+      .beneficio { padding: 6px 10px; }
+      .beneficio h3 { font-size: 15px; }
+    }
+
+    /* Marcas: cinta interactiva */
+    .marcas {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 22px 0;
+      overflow: hidden;
+    }
+    .marcas::before,
+    .marcas::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marcas::before { left: 0; background: linear-gradient(to right, white, rgba(255,255,255,0)); }
+    .marcas::after { right: 0; background: linear-gradient(to left, white, rgba(255,255,255,0)); }
+
+    .cinta {
+      display: flex;
+      width: max-content;
+      animation: desplazar 35s linear infinite;
+    }
+    .marcas:hover .cinta,
+    .marcas.pausada .cinta {
+      animation-play-state: paused;
+    }
+    .grupo {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      padding-right: 26px;
+    }
+    .logo-marca {
+      flex: none;
+      width: 150px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .logo-marca img {
+      max-width: 130px;
+      max-height: 64px;
+      filter: grayscale(100%);
+      opacity: 0.65;
+      transition: filter 0.25s, opacity 0.25s;
+    }
+    .logo-marca:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(11,42,111,0.15);
+    }
+    .logo-marca:hover img {
+      filter: none;
+      opacity: 1;
+    }
+    .muchas-mas {
+      flex: none;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: bold;
+      color: var(--naranja);
+      white-space: nowrap;
+    }
+
+    @keyframes desplazar {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* En celulares los logos se ven a color (no hay mouse) */
+    @media (hover: none) {
+      .logo-marca img { filter: none; opacity: 1; }
+    }
+
+    /* Si la persona prefiere sin movimiento: logos quietos en grilla */
+    @media (prefers-reduced-motion: reduce) {
+      .cinta { animation: none; width: auto; }
+      .grupo { flex-wrap: wrap; justify-content: center; padding: 0 20px; }
+      .grupo[aria-hidden="true"] { display: none; }
+    }
+
+    /* Contacto */
+    .contacto {
+      background: var(--azul);
+      color: white;
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .contacto h2 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+    .contacto p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .contacto-datos {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contacto-datos a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .contacto-datos svg { width: 22px; height: 22px; flex: none; }
+
+    .botones-redes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 22px;
+    }
+    .boton-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      color: #ffffff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .boton-red img { width: 18px; }
+    .whatsapp { background-color: #25D366; }
+    .instagram { background: linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4); }
+
     footer {
       margin-top: 40px;
-      padding: 20px;
+      padding: 25px 15px;
       text-align: center;
       background: white;
       font-size: 14px;
@@ -72,34 +313,28 @@
     }
 
     footer a {
-      color: #0b2a6f;
+      color: var(--azul);
       text-decoration: none;
       font-weight: bold;
     }
- 
-  /* ===== Contenedor genérico de banner ===== */
-  .banner-wrap{
-    max-width:1200px;
-    margin:0 auto;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 4px 14px rgba(0,0,0,0.08);
-  }
- 
+
+    .lema {
+      margin: 14px 0 0;
+      font-style: italic;
+      color: var(--azul);
+    }
+    .lema span { color: var(--naranja); font-weight: bold; }
 
     @media (max-width: 500px) {
-      h1 {
-        font-size: 20px;
-      }
-      .cat {
-        font-size: 14px;
-        padding: 15px;
-      }
+      h1 { font-size: 20px; }
+      .cat { font-size: 14px; padding: 15px; }
+      .titulo-seccion { font-size: 18px; gap: 10px; }
+      .contacto { padding: 22px; }
+      .logo-marca { width: 120px; height: 70px; }
+      .logo-marca img { max-width: 105px; max-height: 54px; }
     }
-    a:hover {
-  opacity: 0.9;
-}
 
+    a:hover { opacity: 0.9; }
   </style>
 </head>
 
@@ -109,24 +344,112 @@
   <img src="logo.png" alt="Trade Farma">
 </header>
 
+<!-- ===== BANNER ===== -->
+<div class="banner-wrap">
+  <img src="img/banner.jpg"
+       alt="Trade Farma: más de 20 años en trayectoria, acompañando el crecimiento de cada farmacia y municipio de la provincia. Llegamos a toda la provincia.">
+</div>
 
+<!-- ===== BOTONES DEL CATÁLOGO ===== -->
 <h1>Catálogo de Productos</h1>
 
 <div class="grid">
   <a class="cat" href="categorias/medicamentos.html">Nuestros productos</a>
   <a class="cat" href="categorias/descartable.html">¿Cómo usar la web?</a>
   <a class="cat" href="categorias/ofertas.html">Ofertas</a>
-  
 </div>
 
-<footer style="
-  margin-top: 40px;
-  padding: 25px 15px;
-  text-align: center;
-  background: white;
-  font-size: 14px;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
-">
+<!-- ===== BENEFICIOS ===== -->
+<section class="seccion">
+  <div class="beneficios">
+    <div class="beneficio">
+      <div class="icono">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5 3.5 13.5a4.95 4.95 0 1 1 7-7l7 7a4.95 4.95 0 1 1-7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+      </div>
+      <h3>Genéricos e insumos médicos</h3>
+      <p>Todo lo que necesitás en un solo lugar.</p>
+    </div>
+    <div class="beneficio">
+      <div class="icono">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m12 6 .9 1.9 2.1.3-1.5 1.5.4 2.1-1.9-1-1.9 1 .4-2.1-1.5-1.5 2.1-.3Z"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg>
+      </div>
+      <h3>Las mejores marcas</h3>
+      <p>Calidad y confianza en cada producto.</p>
+    </div>
+    <div class="beneficio">
+      <div class="icono">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+      </div>
+      <h3>Excelentes precios</h3>
+      <p>La mejor relación precio-calidad.</p>
+    </div>
+    <div class="beneficio">
+      <div class="icono">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4h13v12H1z"/><path d="M14 8h4l4 4v4h-8"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg>
+      </div>
+      <h3>Envíos en toda la provincia</h3>
+      <p>Cubrimos cada rincón para que nunca te falte lo que necesitás.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARCAS (interactivo) ===== -->
+<section class="seccion">
+  <h2 class="titulo-seccion">Trabajamos con las mejores marcas</h2>
+
+  <div class="marcas" id="marcas">
+    <div class="cinta">
+      <div class="grupo">
+        <div class="logo-marca"><img src="img/marcas/lazar.png" alt="Lazar"></div>
+        <div class="logo-marca"><img src="img/marcas/klonal.png" alt="Klonal Laboratorios"></div>
+        <div class="logo-marca"><img src="img/marcas/biosintex.png" alt="Biosintex"></div>
+        <div class="logo-marca"><img src="img/marcas/biotenk.png" alt="Biotenk"></div>
+        <div class="logo-marca"><img src="img/marcas/savant.png" alt="Savant"></div>
+        <div class="logo-marca"><img src="img/marcas/vannier.png" alt="Vannier"></div>
+        <div class="logo-marca"><img src="img/marcas/vent3.png" alt="Vent3"></div>
+        <div class="logo-marca"><img src="img/marcas/microsules.png" alt="Microsules Argentina"></div>
+        <div class="logo-marca"><img src="img/marcas/valmax.png" alt="Valmax"></div>
+        <span class="muchas-mas">y muchas más…</span>
+      </div>
+      <!-- Copia para que la cinta no se corte (los lectores de pantalla la ignoran) -->
+      <div class="grupo" aria-hidden="true">
+        <div class="logo-marca"><img src="img/marcas/lazar.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/klonal.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/biosintex.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/biotenk.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/savant.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/vannier.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/vent3.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/microsules.png" alt=""></div>
+        <div class="logo-marca"><img src="img/marcas/valmax.png" alt=""></div>
+        <span class="muchas-mas">y muchas más…</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="seccion">
+  <div class="contacto">
+    <div>
+      <h2>¡Contactanos!</h2>
+      <p>Te enviamos toda la información que necesitás.</p>
+    </div>
+    <div class="contacto-datos">
+      <a href="mailto:tradefarma@hotmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff5f01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+        tradefarma@hotmail.com
+      </a>
+      <a href="https://www.tradefarma.com.ar/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff5f01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20Z"/></svg>
+        www.tradefarma.com.ar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PIE ===== -->
+<footer>
 
   <p style="margin-bottom: 12px; line-height: 1.5;">
     Si estás interesado en adquirir nuestros productos,<br>
@@ -134,60 +457,38 @@
   </p>
 
   <p style="margin-bottom: 16px;">
-    🌐 <a href="https://www.tradefarma.com.ar/" target="_blank"
-         style="color:#0b2a6f; font-weight:600; text-decoration:none;">
-      www.tradefarma.com.ar
-    </a>
+    🌐 <a href="https://www.tradefarma.com.ar/" target="_blank">www.tradefarma.com.ar</a>
   </p>
+
   <p style="margin-bottom:12px;font-weight:bold;color:#0b2a6f;">
-Seguinos y comunicate con nosotros
-</p>
+    Seguinos y comunicate con nosotros
+  </p>
 
-  <a href="https://wa.me/5493512444832" target="_blank"
-     style="
-       display: inline-flex;
-       align-items: center;
-       gap: 8px;
-       padding: 10px 16px;
-       background-color: #25D366;
-       color: #ffffff;
-       border-radius: 6px;
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 14px;
-     ">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-         alt="WhatsApp"
-         style="width:18px;">
-    Contacto por WhatsApp
-  </a>
-   <!-- Instagram -->
-  <a href="https://www.instagram.com/tradefarma.com.ar?igsh=MXZjeTI4MnR2Mjhvaw==" target="_blank"
-     style="
-       display: inline-flex;
-       align-items: center;
-       gap: 8px;
-       padding: 10px 16px;
-       background: linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4);
-       color: #ffffff;
-       border-radius: 6px;
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 14px;
-     ">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-         alt="Instagram"
-         style="width:18px;">
-    Seguinos en Instagram
-  </a>
+  <div class="botones-redes">
+    <a class="boton-red whatsapp" href="https://wa.me/5493512444832" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+      Contacto por WhatsApp
+    </a>
+    <a class="boton-red instagram" href="https://www.instagram.com/tradefarma.com.ar?igsh=MXZjeTI4MnR2Mjhvaw==" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="">
+      Seguinos en Instagram
+    </a>
+  </div>
 
+  <p class="lema"><span>|</span> Tu farmacia, nuestro compromiso.</p>
 
 </footer>
 
-
-
-
+<script>
+  // En el celular: tocar la cinta de marcas la frena, volver a tocar la reanuda.
+  (function () {
+    var marcas = document.getElementById('marcas');
+    if (!marcas) return;
+    marcas.addEventListener('click', function () {
+      marcas.classList.toggle('pausada');
+    });
+  })();
+</script>
 
 </body>
 </html>
-
